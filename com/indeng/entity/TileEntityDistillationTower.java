@@ -90,7 +90,6 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 			fuel.setLiquid(liquid);
 			
 		}
-
     }
 	
 	public void updateEntity() {
