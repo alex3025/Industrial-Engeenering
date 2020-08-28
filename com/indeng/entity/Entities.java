@@ -12,5 +12,6 @@ public class Entities {
 		GameRegistry.registerTileEntity(OsmoGeneratorEnergy.class, "teOsmoGeneratorEnergy");
 		GameRegistry.registerTileEntity(TileEntityDistillationTower.class, "teDistillation");
 		GameRegistry.registerTileEntity(TileEntityDistillationTank.class, "teDistillationTank");
+		GameRegistry.registerTileEntity(TileEntityPolymerizationUnit.class, "tePolymerization");
 	}
 }

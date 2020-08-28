@@ -16,7 +16,7 @@ public class Blocks {
 
     public static List<Block> blocks = new ArrayList<Block>();
 
-    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationDiesel, blockDistillationGPL, blockDistillationTank;
+    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationDiesel, blockDistillationGPL, blockDistillationTank, blockPolymerization;
 
     public static void initBlocks(){
     	blocks.add(blockDistillationIdle = new BlockDistillationTower(3302, 0, Material.iron, "none").setBlockName("blockDistillation")); 
@@ -26,10 +26,12 @@ public class Blocks {
         blocks.add(blockOsmo = new BlockOsmo(3404, 0, Material.iron).setBlockName("blockOsmo"));
         blocks.add(blockOsmoGen = new BlockOsmoGen(3405, 0, Material.iron).setBlockName("blockOsmoGenIdle"));
         blocks.add(blockTest = new TestBlock(3301, 0, Material.iron).setBlockName("blockTest"));
+        blocks.add(blockPolymerization = new PolymerizationUnit(3310, 0, Material.iron).setBlockName("blockPolymerization"));
         LanguageRegistry.addName(blockOsmo, "Salt Extractor");
         LanguageRegistry.addName(blockTest, "Test Block");
         LanguageRegistry.addName(blockOsmoGen, "Osmosis Generator");
         LanguageRegistry.addName(blockDistillationIdle, "Distillation Tower");
+        LanguageRegistry.addName(blockPolymerization, "Polymerization Unit");
     }
 
     public static void registerBlocks(){
