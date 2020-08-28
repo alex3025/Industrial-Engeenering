@@ -1,8 +1,12 @@
 package com.indeng.entity;
-import com.indeng.api.DistillationTowerFuelManager;
+
+import com.indeng.block.Blocks;
+
 import com.indeng.api.DistillationTowerFuel.FuelType;
+import com.indeng.api.DistillationTowerFuelManager;
 import com.indeng.block.BlockDistillationTower;
 import com.indeng.block.Blocks;
+
 
 import ic2.api.Direction;
 import ic2.api.energy.tile.IEnergySink;
@@ -132,7 +136,6 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 			if(!worldObj.isRemote) {
 				if(burnTime > 0) {
 					burnTime--;
-					System.out.println(fueled);
 				}
 			}
 			

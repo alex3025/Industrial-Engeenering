@@ -11,6 +11,19 @@ public class TileEntityDistillationTank extends TileEntity implements ITankConta
 	
 	LiquidTank tank = new LiquidTank(20000);
 	LiquidTank tank1 = new LiquidTank(1);
+	ForgeDirection currentDirection;
+	
+	
+	public TileEntityDistillationTank(ForgeDirection meta) {
+		this.currentDirection = meta;
+	}
+	
+	@Override
+	public void updateEntity() {
+		System.out.println(this.currentDirection);
+	}
+
+	
 	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill) {
@@ -24,7 +37,7 @@ public class TileEntityDistillationTank extends TileEntity implements ITankConta
 
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-		if (from == ForgeDirection.EAST)
+		if (from == currentDirection)
 			return tank.drain(maxDrain, doDrain);
 		return null;
 	}
@@ -36,7 +49,7 @@ public class TileEntityDistillationTank extends TileEntity implements ITankConta
 
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction) {
-		if (direction == ForgeDirection.EAST) {
+		if (direction == currentDirection) {
 			return new ILiquidTank[] {tank};
 		} else {
 			return new ILiquidTank[] {tank};
@@ -45,7 +58,7 @@ public class TileEntityDistillationTank extends TileEntity implements ITankConta
 
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type) {
-		if (direction == ForgeDirection.EAST)
+		if (direction == currentDirection)
 			return tank;
 		else
 			return tank1;
