@@ -31,23 +31,22 @@ public class ClientProxy extends CommonProxy{
 		MinecraftForgeClient.preloadTexture("/com/indeng/sprites/textures.png");
 		MinecraftForgeClient.preloadTexture("/com/indeng/sprites/blocks.png");
 		MinecraftForgeClient.preloadTexture("/com/indeng/sprites/items.png");
-		MinecraftForgeClient.preloadTexture("/com/indeng/sprites/disttower.png");
+		MinecraftForgeClient.preloadTexture("/com/indeng/sprites/torredist.png");
 		System.out.println("Loading client liquids");
 		
-		
-		
+
 		//Salt Water
 		TextureLiquidsFX liquidFX = new TextureLiquidsFX(4, 2, 188, 249, 249, 249, 0,
                 "/com/indeng/sprites/textures.png");
         liquidFX.tileImage = 3595;
         TextureFXManager.instance().addAnimation(liquidFX);
-        
+
         //GPL
         TextureLiquidsFX liquidGPLFX = new TextureLiquidsFX(0, 0, 0, 0, 255, 255, 1,
                 "/com/indeng/sprites/textures.png");
         liquidGPLFX.tileImage = 3595;
         TextureFXManager.instance().addAnimation(liquidGPLFX);
-        
+
         //Gasoline
         TextureLiquidsFX gasolineFX = new TextureLiquidsFX(0, 0, 133, 179, 128, 172, 2,
                 "/com/indeng/sprites/textures.png");
