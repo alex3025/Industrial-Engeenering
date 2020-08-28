@@ -78,44 +78,46 @@ public class CommonProxy implements IGuiHandler{
 	}
 
 	public static void initLiquids() {
+		// Town Gas
+		LiquidUtils.addLiquid("Town Gas", 3422, 9, 3423, 8, new ArrayList<String>(){{add("CO, H2");}});
+		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("Town Gas", LiquidContainerRegistry.BUCKET_VOLUME), 78800);
+		DistillationTowerFuelManager.addFuel(new DistillationTowerFuel(LiquidDictionary.getLiquid("Town Gas", LiquidContainerRegistry.BUCKET_VOLUME), 3660, FuelType.GAS));
 		
-		//Diesel
+		// Diesel
 		DistillationTowerFuelManager.addFuel(new DistillationTowerFuel(LiquidDictionary.getLiquid("Fuel", LiquidContainerRegistry.BUCKET_VOLUME), 6000, FuelType.LIQUID));
 		
-		//GPL
+		// GPL
 		LiquidUtils.addLiquid("GPL", 3405, 1, 3406, 1, new ArrayList<String>(){{add("C3H8, C4");}});
 		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("GPL", LiquidContainerRegistry.BUCKET_VOLUME), 84000);
 		DistillationTowerFuelManager.addFuel(new DistillationTowerFuel(LiquidDictionary.getLiquid("GPL", LiquidContainerRegistry.BUCKET_VOLUME), 3900, FuelType.GAS));
 		
-		//CO
+		// CO
 		LiquidUtils.addLiquid("Carbon Monoxide", 3419, 8, new ItemCellCO(3420).setIconIndex(7));
 		
-		//Gasoline
+		// Gasoline
 		LiquidUtils.addLiquid("Gasoline", 3407, 2, 3408, 2, new ArrayList<String>(){{add("C8");}});
 		IronEngineFuel.fuels.add(new IronEngineFuel(LiquidDictionary.getLiquid("Gasoline", LiquidContainerRegistry.BUCKET_VOLUME), 10, 90000));
 		
-		//Naphtha
+		// Naphtha
 		LiquidUtils.addLiquid("Kerosene", 3409, 3, 3410, 3, new ArrayList<String>(){{add("C15");}});
 		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("Kerosene", LiquidContainerRegistry.BUCKET_VOLUME), 41000);
 		
-		//HFO
+		// HFO
 		LiquidUtils.addLiquid("HFO", 3411, 4, 3412, 4, new ArrayList<String>(){{add("C24");}});
 		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("HFO", LiquidContainerRegistry.BUCKET_VOLUME), 105000);
 		DistillationTowerFuelManager.addFuel(new DistillationTowerFuel(LiquidDictionary.getLiquid("HFO", LiquidContainerRegistry.BUCKET_VOLUME), 6600, FuelType.LIQUID));
 		
-		//BunkerC
+		// BunkerC
 		LiquidUtils.addLiquid("Bunker C", 3415, 6, 3416, 6, new ArrayList<String>(){{add("Category H");}});
 		
-		//Heated BunkerC
+		// Heated BunkerC
 		LiquidUtils.addLiquid("Heated Bunker C", 3417, 7, 3418, 6, new ArrayList<String>(){{add("Category H"); add("This can be burnt in a boiler");}});
 		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("Heated Bunker C", LiquidContainerRegistry.BUCKET_VOLUME), 125000);
 		
-		//Crude residue
+		// Crude residue
 		LiquidUtils.addLiquid("Crude Residue", 3413, 5, 3414, 5, new ArrayList<String>(){{add("> C24");}});
 		
-		//Salt Water
+		// Salt Water
 		LiquidUtils.addLiquid("Salt Water", 3404, 0, 3400, 0, new ArrayList<String>(){{add("H2O, NaCl");}});
-		
 	}
-
 }
