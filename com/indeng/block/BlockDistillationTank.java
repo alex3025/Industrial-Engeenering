@@ -58,7 +58,7 @@ public class BlockDistillationTank extends BlockContainer{
 	
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-		return new TileEntityDistillationTank();
+		return new TileEntityDistillationTank(dir);
 	}
 	
 	public int getRenderType() {
