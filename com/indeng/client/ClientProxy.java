@@ -6,8 +6,10 @@ import com.indeng.common.CommonProxy;
 import com.indeng.common.SoundHandler;
 import com.indeng.entity.OsmoGeneratorEnergy;
 import com.indeng.entity.TileEntityDistillationTank;
+import com.indeng.entity.TileEntityPolymerizationUnit;
 import com.indeng.entity.TileEntityTest;
 import com.indeng.models.RenderTableDistillationTank;
+import com.indeng.models.RenderTablePolymerizationUnit;
 
 import cpw.mods.fml.client.TextureFXManager;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -87,7 +89,13 @@ public class ClientProxy extends CommonProxy{
 	    TextureLiquidsFX coFX = new TextureLiquidsFX(99, 99, 88, 88, 88, 88, 8,
 	            "/com/indeng/sprites/textures.png");
 	    coFX.tileImage = 3595;
-	    TextureFXManager.instance().addAnimation(coFX); 
+	    TextureFXManager.instance().addAnimation(coFX);
+	    
+	    //Town GAS
+	    TextureLiquidsFX townFX = new TextureLiquidsFX(184, 184, 181, 181, 127, 127, 9,
+	            "/com/indeng/sprites/textures.png");
+	    townFX.tileImage = 3595;
+	    TextureFXManager.instance().addAnimation(townFX); 
 		
 	}
 	
@@ -106,7 +114,7 @@ public class ClientProxy extends CommonProxy{
 		super.init();
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDistillationTank.class, new RenderTableDistillationTank());
-        
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPolymerizationUnit.class, new RenderTablePolymerizationUnit());
 	}
 	
 }

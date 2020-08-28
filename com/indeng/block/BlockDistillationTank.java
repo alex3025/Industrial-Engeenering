@@ -18,7 +18,6 @@ public class BlockDistillationTank extends BlockContainer{
 	protected BlockDistillationTank(int par1, int par2, Material par3Material) {
 		super(par1, par2, par3Material);
 	}
-
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity) {
 		super.onBlockPlacedBy(world, x, y, z, entity);
@@ -35,16 +34,16 @@ public class BlockDistillationTank extends BlockContainer{
 
 			if(facing/2 == 0) {
 				dir = ForgeDirection.NORTH;
-				System.out.println(dir);
+
 			} else if(facing/2 == 1) {
 				dir = ForgeDirection.EAST;
-				System.out.println(dir);
+
 			} else if(facing/2 == 2) {
 				dir = ForgeDirection.SOUTH;
-				System.out.println(dir);
+
 			} else if(facing/2 ==  3) {
 				dir = ForgeDirection.WEST;
-				System.out.println(dir);
+
 			} else {
 				dir = ForgeDirection.EAST;
 			}
@@ -63,7 +62,7 @@ public class BlockDistillationTank extends BlockContainer{
 	public int getRenderType() {
 		return -1;
 	}
-
+	
 	public String getTextureFile() {
 		return "/com/indeng/sprites/torredist.png";
 	}

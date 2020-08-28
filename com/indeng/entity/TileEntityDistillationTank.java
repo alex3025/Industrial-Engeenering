@@ -13,7 +13,6 @@ import net.minecraftforge.liquids.LiquidTank;
 public class TileEntityDistillationTank extends TileEntity implements ITankContainer{
 	
 	LiquidTank tank = new LiquidTank(20000);
-	LiquidTank tank1 = new LiquidTank(1);
 	ForgeDirection currentDirection;
 	
 	
@@ -85,7 +84,7 @@ public class TileEntityDistillationTank extends TileEntity implements ITankConta
 		if (direction == currentDirection) {
 			return new ILiquidTank[] {tank};
 		} else {
-			return new ILiquidTank[] {tank};
+			return new ILiquidTank[] {};
 		}
 	}
 
@@ -93,8 +92,7 @@ public class TileEntityDistillationTank extends TileEntity implements ITankConta
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type) {
 		if (direction == currentDirection)
 			return tank;
-		else
-			return tank1;
+		return null;
 	}
 	
 
