@@ -28,13 +28,13 @@ public class LiquidUtils {
 	public static List<Item> items = new ArrayList<Item>();
 	
 	public static void addLiquid(String name, int id, int index, int cellID, int cellIndex, List toolTip) {
-		Item itemCell = new ItemCell(cellID, toolTip).setItemName(name.toLowerCase() + "Cell").setCreativeTab(ModCreativeTab.IndEngLiquids).setIconIndex(cellIndex).setTextureFile("/com/industrialengeenering/sprites/items.png");
+		Item itemCell = new ItemCell(cellID, toolTip).setItemName(name.toLowerCase() + "Cell").setCreativeTab(ModCreativeTab.IndEngLiquids).setIconIndex(cellIndex).setTextureFile("/com/indeng/sprites/items.png");
 		items.add(itemCell);
 		OreDictionary.registerOre(name + " Cell", itemCell);
 		
 		GameRegistry.registerItem(itemCell, name.toLowerCase() + "Cell");
 		LanguageRegistry.addName(itemCell, name + " Cell");
-		Item liquidItem = new Item(id).setIconIndex(index).setTextureFile("/com/industrialengeenering/sprites/textures.png").setItemName("liquid" + name);
+		Item liquidItem = new Item(id).setIconIndex(index).setTextureFile("/com/indeng/sprites/textures.png").setItemName("liquid" + name);
 		
 		ItemStack liquidItemStack = new ItemStack(liquidItem, 1);
 		
@@ -49,13 +49,13 @@ public class LiquidUtils {
 	}
 	
 	public static void addLiquid(String name, int id, int index, Item itemCell) {
-		itemCell.setTextureFile("/com/industrialengeenering/sprites/items.png");
+		itemCell.setTextureFile("/com/indeng/sprites/items.png");
 		itemCell.setItemName(name.toLowerCase() + "Cell");
 		itemCell.setCreativeTab(ModCreativeTab.IndEngLiquids);
 		items.add(itemCell);
 		GameRegistry.registerItem(itemCell, name.toLowerCase() + "Cell");
 		LanguageRegistry.addName(itemCell, name + " Cell");
-		Item liquidItem = new Item(id).setIconIndex(index).setTextureFile("/com/industrialengeenering/sprites/textures.png").setItemName("liquid" + name);
+		Item liquidItem = new Item(id).setIconIndex(index).setTextureFile("/com/indeng/sprites/textures.png").setItemName("liquid" + name);
 		ItemStack liquidItemStack = new ItemStack(liquidItem, 1);
 		
 		LiquidStack liquidStack = new LiquidStack(liquidItem, LiquidContainerRegistry.BUCKET_VOLUME);

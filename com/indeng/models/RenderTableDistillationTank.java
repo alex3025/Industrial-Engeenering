@@ -21,7 +21,7 @@ public class RenderTableDistillationTank extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		GL11.glTranslated(x + 0.5D, y + 1.5D, z + 0.5D);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
-		bindTextureByName("/com/industrialengeenering/sprites/torredist.png");
+		bindTextureByName("/com/indeng/sprites/torredist.png");
 		DistillationTank.render((Entity) null, 0.0F, -0.1F, 0.0F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
 	}

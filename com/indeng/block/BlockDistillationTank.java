@@ -25,7 +25,7 @@ public class BlockDistillationTank extends BlockContainer{
 	}
 
 	public String getTextureFile() {
-		return "/com/industrialengeenering/sprites/torredist.png";
+		return "/com/indeng/sprites/torredist.png";
 	}
 
 	public boolean isOpaqueCube() {

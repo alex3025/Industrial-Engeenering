@@ -30,5 +30,4 @@ public class DistillationTowerFuel {
 	public FuelType getType() {
 		return this.type;
 	}
-	
 }

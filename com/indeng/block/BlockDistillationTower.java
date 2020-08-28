@@ -27,7 +27,7 @@ public class BlockDistillationTower extends BlockContainer {
 	
 	protected BlockDistillationTower(int par1, int par2, Material par3Material, String fuel) {
 		super(par1, par2, par3Material);
-		setTextureFile("/com/industrialengeenering/sprites/blocks.png");
+		setTextureFile("/com/indeng/sprites/blocks.png");
 		this.fuel = fuel;
 	}
 

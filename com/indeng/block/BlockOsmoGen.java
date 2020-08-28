@@ -30,7 +30,7 @@ public class BlockOsmoGen extends BlockContainerRotation {
 	protected BlockOsmoGen(int par1, int par2, Material par3Material) {
 		super(par1, par2, par3Material, 2, 0, 0, 0, 0, 0);
 		//this.active = active;
-		setTextureFile("/com/industrialengeenering/sprites/blocks.png");
+		setTextureFile("/com/indeng/sprites/blocks.png");
 	}
 
 	@Override

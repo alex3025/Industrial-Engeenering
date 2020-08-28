@@ -38,9 +38,9 @@ import net.minecraftforge.liquids.LiquidDictionary;
 //LE COSE SI FANNO CON ORDINE, TUTTO HA UN PACCHETTO
 
 @Mod(name="Industrial Engeenering", version="1.0-dev", modid="industrialengeenering")
-@NetworkMod(clientSideRequired=true, serverSideRequired=false, clientPacketHandlerSpec = @SidedPacketHandler (channels = {"ie"}, packetHandler = com.indeng.client.ClientPacketHandler.class), serverPacketHandlerSpec =@SidedPacketHandler(channels = {"ie"}, packetHandler = com.indeng.common.ServerPacketHandler.class))
+@NetworkMod(clientSideRequired=true, serverSideRequired=false, clientPacketHandlerSpec = @SidedPacketHandler (channels = {"indeng"}, packetHandler = com.indeng.client.ClientPacketHandler.class), serverPacketHandlerSpec =@SidedPacketHandler(channels = {"indeng"}, packetHandler = com.indeng.common.ServerPacketHandler.class))
 public class Core extends BaseMod {
-	@SidedProxy(clientSide = "com.industrialengeenering.client.ClientProxy", serverSide = "com.industrialengeenering.common.CommonProxy")
+	@SidedProxy(clientSide = "com.indeng.client.ClientProxy", serverSide = "com.indeng.common.CommonProxy")
 	public static com.indeng.common.CommonProxy proxy;
 
 	@Instance("industrialengeenering")
