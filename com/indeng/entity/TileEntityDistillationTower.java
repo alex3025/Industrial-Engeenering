@@ -10,6 +10,7 @@ import com.indeng.block.Blocks;
 
 import ic2.api.Direction;
 import ic2.api.energy.tile.IEnergySink;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -39,7 +40,7 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 	public LiquidTank fuel = new LiquidTank(16000);
 	public int burnTime;
 	public FuelType currentType = FuelType.LIQUID;
-	
+	public int audioDuration;
 	
 	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
@@ -95,6 +96,14 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 	public void updateEntity() {
 		
 		if(!worldObj.isRemote) {
+			
+			if(this.audioDuration > 0 && fueled) {
+				this.audioDuration--;
+			} else if (fueled){
+				this.audioDuration = 100;
+				Minecraft.getMinecraft().sndManager.playSound("machines.bruciatore", xCoord, yCoord, zCoord, 1f, 1);
+				//worldObj.playSound(xCoord, yCoord, zCoord, "machines.bruciatore", 0.4f, 0.5f, false);
+			}
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			
 			crudeP = 0;

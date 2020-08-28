@@ -21,8 +21,7 @@ public class SoundHandler {
 		System.out.println("[RGB] Loading Sound for RGBMod");
         try
         {
-        	System.out.println(Core.class.getResource("/com/indeng/sprites/blocks.png"));
-            event.manager.addSound("machines/osmo.ogg", new File("resources/mod/sound/osmo.ogg"));
+            event.manager.addSound("machines/bruciatore.ogg", new File("resources/mod/sound/bruciatore.ogg"));
         }
         catch (Exception e)
         {
