@@ -2,6 +2,7 @@ package com.indeng.core;
 
 import com.indeng.block.Blocks;
 import com.indeng.client.TextureLiquidsFX;
+import com.indeng.common.CraftingHandler;
 import com.indeng.common.SoundHandler;
 import com.indeng.entity.Entities;
 import com.indeng.entity.TileEntityTest;

@@ -19,13 +19,6 @@ public class TileEntityDistillationTank extends TileEntity implements ITankConta
 	}
 	
 	@Override
-	public void updateEntity() {
-		System.out.println(this.currentDirection);
-	}
-
-	
-	
-	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill) {
 		return 0;
 	}

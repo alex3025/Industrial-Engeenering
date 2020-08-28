@@ -35,7 +35,7 @@ public class Blocks {
     public static void registerBlocks(){
         for (int i=0; i < blocks.size(); i++){
         	if(blocks.get(i).blockID != 3304 && blocks.get(i).blockID != 3305) {
-        		blocks.get(i).setCreativeTab(ModCreativeTab.IndEngBlocks).setHardness(2.0F);
+        		blocks.get(i).setCreativeTab(ModCreativeTab.IndEngBlocks).setHardness(2.0F).setStepSound(Block.blockSteel.stepSound);
         	}
             GameRegistry.registerBlock(blocks.get(i), blocks.get(i).getBlockName());
         }

@@ -68,6 +68,7 @@ public class CommonProxy implements IGuiHandler{
 		registerRenderThings();
 		
 		// Recipes
+        CraftingHandler.initRecipes();
 		
 		// IC2 Extractor: Salt Water Cell > Empty Cell
 		Ic2Recipes.addExtractorRecipe(new ItemStack(LiquidUtils.items.get(0), 1, 0), new ItemStack(ic2.api.Items.getItem("cell").itemID, 1, 0));
