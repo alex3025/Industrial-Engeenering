@@ -1,0 +1,12 @@
+[
+{
+	"modid": "industrialengeneering",
+	"name": "Industrial Engeenering",
+	"description": "È impossibile! But Yes Of Course!",
+	"version": "v1.0-dev",
+	"authors": ["Lolz2600", "alex3025"],
+	"logoFile": "/rgb/sprites/mod-logo.png",
+	"url": "https://www.rgbcraft.com",
+    	"dependencies": ["IC2", "BuildCraft|Transport", "BuildCraft|Energy", "BuildCraft|Factory"]
+}
+]

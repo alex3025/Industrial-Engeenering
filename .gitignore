@@ -21,3 +21,23 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Ignore other Mods/APIs
+buildcraft/
+cpw/
+dan200/
+ibxm/
+ic2/
+net/
+paulscode/
+railcraft/
+
+# Ignore other Files
+fml_at.cfg
+fml_marker.cfg
+fmlversion.properties
+forge_at.cfg
+forge_logo.png
+mcp.png
+mcpmod.info
+Start.java
