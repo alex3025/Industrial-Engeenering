@@ -67,6 +67,7 @@ public class Core extends BaseMod {
         Blocks.registerBlocks();
         Entities.registerEntities();
         Liquids.initLiquids();
+        Items.initItems();
         Items.registerItems();
         
         
