@@ -69,12 +69,6 @@ public class CommonProxy implements IGuiHandler{
 		
 		// Recipes
         CraftingHandler.initRecipes();
-		
-		// IC2 Extractor: Salt Water Cell > Empty Cell
-		Ic2Recipes.addExtractorRecipe(new ItemStack(LiquidUtils.items.get(0), 1, 0), new ItemStack(ic2.api.Items.getItem("cell").itemID, 1, 0));
-		
-		// Smelting: Salt Water Cell > Water Cell
-		GameRegistry.addSmelting(LiquidUtils.items.get(0).itemID, new ItemStack(ic2.api.Items.getItem("waterCell").itemID, 1, 0), 0);
 	}
 
 	public static void initLiquids() {
