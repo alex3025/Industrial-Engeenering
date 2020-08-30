@@ -1,4 +1,4 @@
-# IndustrialEngeenering
+# Industrial Engeenering
 
 Mod per Minecraft 1.4.7 che aggiunge numerosi macchinari e processi industriali
 
