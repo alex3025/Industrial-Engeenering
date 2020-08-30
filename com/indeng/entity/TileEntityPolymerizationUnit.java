@@ -124,7 +124,7 @@ public class TileEntityPolymerizationUnit extends TileEntity implements IEnergyS
 	@Override
 	public int getMaxSafeInput() {
 		// TODO Auto-generated method stub
-		return 32;
+		return 128;
 	}
 
 	@Override

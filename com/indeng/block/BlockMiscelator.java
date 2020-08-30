@@ -51,5 +51,17 @@ public class BlockMiscelator extends BlockContainer {
 	public TileEntity createNewTileEntity(World var1) {
 		return new TileEntityMiscelator(dir);
 	}
+	
+	public int getRenderType() {
+		return -1;
+	}
+
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
 
 }

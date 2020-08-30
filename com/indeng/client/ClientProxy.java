@@ -7,11 +7,15 @@ import com.indeng.common.CommonProxy;
 import com.indeng.common.SoundHandler;
 import com.indeng.entity.OsmoGeneratorEnergy;
 import com.indeng.entity.TileEntityBunkerCHeater;
+import com.indeng.entity.TileEntityCatalystRegen;
 import com.indeng.entity.TileEntityDistillationTank;
+import com.indeng.entity.TileEntityMiscelator;
 import com.indeng.entity.TileEntityPolymerizationUnit;
 import com.indeng.entity.TileEntityTest;
+import com.indeng.guis.GuiCatalystRegen;
 import com.indeng.models.RenderTableBunkerCHeater;
 import com.indeng.models.RenderTableDistillationTank;
+import com.indeng.models.RenderTableGasMixingUnit;
 import com.indeng.models.RenderTablePolymerizationUnit;
 
 import cpw.mods.fml.client.TextureFXManager;
@@ -44,7 +48,7 @@ public class ClientProxy extends CommonProxy{
         
         final int distillationTankRenderID = RenderingRegistry.getNextAvailableRenderId();
         final RenderTableDistillationTank distillationTankRenderer = new RenderTableDistillationTank(distillationTankRenderID);
-//        Blocks.blockDistillationTank.setRenderType(distillationTankRenderID);
+        //Blocks.blockDistillationTank.setRenderType(distillationTankRenderID);
         ClientRegistry.bindTileEntitySpecialRenderer((Class)TileEntityDistillationTank.class, (TileEntitySpecialRenderer)distillationTankRenderer);
         RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler)distillationTankRenderer);
 		
@@ -118,7 +122,13 @@ public class ClientProxy extends CommonProxy{
 	
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int X, int Y, int Z) {
-		return null;
+		TileEntity te=world.getBlockTileEntity(X, Y, Z);
+		if (te!=null && te instanceof TileEntityCatalystRegen) {
+			TileEntityCatalystRegen temg = (TileEntityCatalystRegen) te;
+			return new GuiCatalystRegen(player.inventory, temg);
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -127,6 +137,7 @@ public class ClientProxy extends CommonProxy{
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPolymerizationUnit.class, new RenderTablePolymerizationUnit());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBunkerCHeater.class, new RenderTableBunkerCHeater());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiscelator.class, new RenderTableGasMixingUnit());
 	}
 	
 }

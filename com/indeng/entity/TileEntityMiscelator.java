@@ -1,5 +1,8 @@
 package com.indeng.entity;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
@@ -25,19 +28,19 @@ public class TileEntityMiscelator extends TileEntity implements ITankContainer {
 		
 		if(tag.getShort("Dir") == (short)0) {
         	currentDirection = ForgeDirection.NORTH;
-        	this.secondDirection = ForgeDirection.EAST;
+        	this.secondDirection = ForgeDirection.WEST;
         	this.townDirection = ForgeDirection.SOUTH;
         } else if(tag.getShort("Dir") == (short)1) {
         	currentDirection = ForgeDirection.EAST;
         	this.townDirection = ForgeDirection.WEST;
-        	this.secondDirection = ForgeDirection.SOUTH;
+        	this.secondDirection = ForgeDirection.NORTH;
         } else if(tag.getShort("Dir") == (short)2) {
         	currentDirection = ForgeDirection.SOUTH;
-        	this.secondDirection = ForgeDirection.WEST;
+        	this.secondDirection = ForgeDirection.EAST;
         	this.townDirection = ForgeDirection.NORTH;
         } else if(tag.getShort("Dir") == (short)3) {
         	currentDirection = ForgeDirection.WEST;
-        	this.secondDirection = ForgeDirection.NORTH;
+        	this.secondDirection = ForgeDirection.SOUTH;
         	this.townDirection = ForgeDirection.EAST;
         }
 		
@@ -63,19 +66,19 @@ public class TileEntityMiscelator extends TileEntity implements ITankContainer {
 		
 		
 		if(dir == ForgeDirection.NORTH) {
-			this.secondDirection = ForgeDirection.EAST;
+			this.secondDirection = ForgeDirection.WEST;
 		}
 		
 		if(dir == ForgeDirection.WEST) {
-			this.secondDirection = ForgeDirection.NORTH;
-		}
-		
-		if(dir == ForgeDirection.EAST) {
 			this.secondDirection = ForgeDirection.SOUTH;
 		}
 		
+		if(dir == ForgeDirection.EAST) {
+			this.secondDirection = ForgeDirection.NORTH;
+		}
+		
 		if(dir == ForgeDirection.SOUTH) {
-			this.secondDirection = ForgeDirection.WEST;
+			this.secondDirection = ForgeDirection.EAST;
 		}
 		
 		if(dir == ForgeDirection.NORTH) {
@@ -102,6 +105,17 @@ public class TileEntityMiscelator extends TileEntity implements ITankContainer {
 	
 	
 	@Override
+	public void updateEntity() {
+		if(this.hydroTank.getLiquid() != null && this.coTank.getLiquid() != null) {
+			if(this.hydroTank.getLiquid().amount >= 2000 && this.coTank.getLiquid().amount >= 1000) {
+				this.townTank.fill(LiquidDictionary.getLiquid("Town Gas", 3000), true);
+				this.hydroTank.drain(2000, true);
+				this.coTank.drain(1000, true);
+			}
+		}
+	}
+	
+	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill) {
 		if(from != this.currentDirection && from != this.secondDirection) {
 			return 0;
@@ -111,7 +125,10 @@ public class TileEntityMiscelator extends TileEntity implements ITankContainer {
 			return 0;
 		}
 		
-		if(resource.isLiquidEqual(LiquidDictionary.getLiquid("Bunker C", resource.amount)) && from == this.currentDirection) {
+		
+		
+		
+		if(resource.isLiquidEqual(LiquidDictionary.getLiquid("gasHydrogen", resource.amount)) && from == this.currentDirection) {
 			
 			if(this.hydroTank.getLiquid() == null) {
 				if(resource.amount <= this.hydroTank.getCapacity()) {
@@ -123,7 +140,7 @@ public class TileEntityMiscelator extends TileEntity implements ITankContainer {
 				this.hydroTank.fill(resource, doFill);
 				return resource.amount;
 			}
-		} else if(resource.isLiquidEqual(LiquidDictionary.getLiquid("Steam", resource.amount)) && from == this.secondDirection) {
+		} else if(resource.isLiquidEqual(LiquidDictionary.getLiquid("Carbon Monoxide", resource.amount)) && from == this.secondDirection) {
 			
 			if(this.coTank.getLiquid() == null) {
 				if(resource.amount <= this.coTank.getCapacity()) {

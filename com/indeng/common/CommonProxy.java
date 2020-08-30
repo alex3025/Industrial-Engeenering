@@ -7,7 +7,10 @@ import org.lwjgl.input.Keyboard;
 
 import com.indeng.api.DistillationTowerFuel;
 import com.indeng.api.DistillationTowerFuelManager;
+import com.indeng.containers.ContainerCatalystRegen;
 import com.indeng.api.DistillationTowerFuel.FuelType;
+import com.indeng.entity.TileEntityCatalystRegen;
+import com.indeng.guis.GuiCatalystRegen;
 import com.indeng.item.ItemCellCO;
 import com.indeng.item.Items;
 import com.indeng.utils.LiquidUtils;
@@ -41,7 +44,13 @@ public class CommonProxy implements IGuiHandler{
 	
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		return null;
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if (te != null && te instanceof TileEntityCatalystRegen) {
+			TileEntityCatalystRegen temg = (TileEntityCatalystRegen) te;
+			return new ContainerCatalystRegen(player.inventory, temg);
+		} else {
+			return null;
+		}
 	}
 
 	@Override
