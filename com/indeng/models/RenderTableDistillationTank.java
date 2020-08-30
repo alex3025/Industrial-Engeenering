@@ -6,15 +6,21 @@ import com.indeng.block.BlockDistillationTank;
 import com.indeng.block.Blocks;
 import com.indeng.entity.TileEntityDistillationTank;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 
-public class RenderTableDistillationTank extends TileEntitySpecialRenderer {
+public class RenderTableDistillationTank extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 	private ModelDistillationTower DistillationTank;
+	private int renderId;
 	
-	public RenderTableDistillationTank() {
+	public RenderTableDistillationTank(int renderId) {
 		DistillationTank = new ModelDistillationTower();
+		this.renderId = renderId;
 	}
 	
 	@Override
@@ -49,5 +55,30 @@ public class RenderTableDistillationTank extends TileEntitySpecialRenderer {
 		bindTextureByName("/com/indeng/sprites/torredist.png");
 		DistillationTank.render((Entity) null, 0.0F, -0.1F, 0.0F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
+	}
+	
+	@Override
+    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+		bindTextureByName("/com/indeng/sprites/torredist.png");
+        GL11.glPushMatrix();
+        GL11.glTranslated(-0.5, -0.5625, -0.5);
+        DistillationTank.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
+        GL11.glPopMatrix();
+
+    }
+
+	@Override
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+		return true;
+	}
+
+	@Override
+	public boolean shouldRender3DInInventory() {
+		return true;
+	}
+
+	@Override
+	public int getRenderId() {
+		return this.renderId;
 	}
 }

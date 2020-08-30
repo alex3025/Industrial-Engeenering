@@ -2,6 +2,7 @@ package com.indeng.client;
 
 import java.util.List;
 
+import com.indeng.block.Blocks;
 import com.indeng.common.CommonProxy;
 import com.indeng.common.SoundHandler;
 import com.indeng.entity.OsmoGeneratorEnergy;
@@ -13,12 +14,15 @@ import com.indeng.models.RenderTablePolymerizationUnit;
 
 import cpw.mods.fml.client.TextureFXManager;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -35,6 +39,12 @@ public class ClientProxy extends CommonProxy{
 		MinecraftForgeClient.preloadTexture("/com/indeng/sprites/items.png");
 		MinecraftForgeClient.preloadTexture("/com/indeng/sprites/torredist.png");
 		System.out.println("Loading client liquids");
+        
+        final int distillationTankRenderID = RenderingRegistry.getNextAvailableRenderId();
+        final RenderTableDistillationTank distillationTankRenderer = new RenderTableDistillationTank(distillationTankRenderID);
+//        Blocks.blockDistillationTank.setRenderType(distillationTankRenderID);
+        ClientRegistry.bindTileEntitySpecialRenderer((Class)TileEntityDistillationTank.class, (TileEntitySpecialRenderer)distillationTankRenderer);
+        RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler)distillationTankRenderer);
 		
 
 		//Salt Water
@@ -112,8 +122,7 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void init() {
 		super.init();
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDistillationTank.class, new RenderTableDistillationTank());
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPolymerizationUnit.class, new RenderTablePolymerizationUnit());
 	}
 	

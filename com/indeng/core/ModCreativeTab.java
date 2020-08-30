@@ -13,7 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 
 public class ModCreativeTab extends CreativeTabs {
-	public static CreativeTabs IndEngBlocks = new ModCreativeTab(CreativeTabs.getNextID(), "Industrial Engeenering - Blocks");
+	public static CreativeTabs IndEngGeneral = new ModCreativeTab(CreativeTabs.getNextID(), "Industrial Engeenering - General");
 	public static CreativeTabs IndEngLiquids = new ModCreativeTab(CreativeTabs.getNextID(), "Industrial Engeenering - Liquids");
 
 	private String name;
@@ -25,10 +25,10 @@ public class ModCreativeTab extends CreativeTabs {
 
 	@SideOnly(Side.CLIENT)
 	public ItemStack getIconItemStack() {
-		if (this.name == IndEngBlocks.getTabLabel()) {
+		if (this.name == IndEngGeneral.getTabLabel()) {
 			return new ItemStack(Blocks.blockOsmoGen.blockID, 1, 0);
 		} else if (this.name == IndEngLiquids.getTabLabel()) {
-			return new ItemStack(LiquidUtils.items.get(0).itemID, 1, 0);
+			return new ItemStack(LiquidUtils.items.get(LiquidUtils.items.size() - 1).itemID, 1, 0);
 		}
 
 		return null;

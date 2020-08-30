@@ -35,8 +35,6 @@ import net.minecraftforge.liquids.LiquidStack;
 import railcraft.common.api.fuel.FuelManager;
 
 public class CommonProxy implements IGuiHandler{
-
-	
 	public static LiquidStack acidStack;
 	public static ItemStack acidItemStack;
 	public static Item acidItem;

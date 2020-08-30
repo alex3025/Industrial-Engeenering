@@ -36,7 +36,7 @@ public class Items {
 	public static void registerItems(){
         for (int i=0; i < items.size(); i++){
         	
-        	items.get(i).setCreativeTab(ModCreativeTab.IndEngBlocks).setTextureFile("/com/indeng/sprites/items.png");
+        	items.get(i).setCreativeTab(ModCreativeTab.IndEngGeneral).setTextureFile("/com/indeng/sprites/items.png");
         	
             GameRegistry.registerItem(items.get(i), items.get(i).getItemName());
         }

@@ -20,11 +20,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public class BlockDistillationTower extends BlockContainer {
-
-	
 	String fuel;
-	
-	
+
 	protected BlockDistillationTower(int par1, int par2, Material par3Material, String fuel) {
 		super(par1, par2, par3Material);
 		setTextureFile("/com/indeng/sprites/blocks.png");

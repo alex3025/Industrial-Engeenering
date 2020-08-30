@@ -10,12 +10,18 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class BlockDistillationTank extends BlockContainer{
+public class BlockDistillationTank extends BlockContainer {
 	
+	protected int renderType;
 	int gMeta = 0;
 	ForgeDirection dir;
+    
+    public BlockDistillationTank setRenderType(final int id) {
+        this.renderType = id;
+        return this;
+    }
 	
-	protected BlockDistillationTank(int par1, int par2, Material par3Material) {
+	public BlockDistillationTank(int par1, int par2, Material par3Material) {
 		super(par1, par2, par3Material);
 	}
 	
@@ -47,20 +53,12 @@ public class BlockDistillationTank extends BlockContainer{
 			} else {
 				dir = ForgeDirection.EAST;
 			}
-			
-				
-			
-			
 		}
 	}
 	
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
 		return new TileEntityDistillationTank(dir);
-	}
-	
-	public int getRenderType() {
-		return -1;
 	}
 	
 	public String getTextureFile() {
@@ -73,6 +71,10 @@ public class BlockDistillationTank extends BlockContainer{
 
 	public boolean renderAsNormalBlock() {
 		return false;
+	}
+	
+	public int getRenderType() {
+		return this.renderType;
 	}
 
 }
