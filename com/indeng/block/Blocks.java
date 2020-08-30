@@ -15,11 +15,14 @@ import com.indeng.core.ModCreativeTab;
 public class Blocks {
 	public static List<Block> blocks = new ArrayList<Block>();
 
-    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationDiesel, blockDistillationGPL, blockPolymerization, blockBunkerCHeater, blockMiscelator, blockCatalystRegen;
+    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationDiesel, blockDistillationGPL, blockPolymerization, blockBunkerCHeater, blockMiscelator, blockCatalystRegen, blockVacuumDistillation, blockVacuumDistillationDiesel, blockVacuumDistillationGPL;
     public static BlockDistillationTank blockDistillationTank;
     
     public static void initBlocks(){
     	blocks.add(blockDistillationIdle = new BlockDistillationTower(3302, 0, Material.iron, "none").setBlockName("blockDistillation")); 
+    	blocks.add(blockVacuumDistillation = new BlockVacuumDistillationTower(3314, 0, Material.iron, "none").setBlockName("blockVacuumDistillation")); 
+    	blocks.add(blockVacuumDistillationDiesel = new BlockVacuumDistillationTower(3315, 0, Material.iron, "fuel").setBlockName("blockVacuumDistillationDiesel")); 
+    	blocks.add(blockVacuumDistillationGPL = new BlockVacuumDistillationTower(3316, 0, Material.iron, "gpl").setBlockName("blockVacuumDistillationGPL")); 
     	blocks.add(blockDistillationDiesel = new BlockDistillationTower(3304, 0, Material.iron, "fuel").setBlockName("blockDistillationDiesel")); 
     	blocks.add(blockDistillationGPL = new BlockDistillationTower(3305, 0, Material.iron, "gpl").setBlockName("blockDistillationGPL")); 
     	blocks.add(blockDistillationTank = (BlockDistillationTank) new BlockDistillationTank(3303, 0, Material.iron).setBlockName("blockDistillationTank")); 
@@ -34,6 +37,7 @@ public class Blocks {
         LanguageRegistry.addName(blockTest, "Test Block");
         LanguageRegistry.addName(blockOsmoGen, "Osmosis Generator");
         LanguageRegistry.addName(blockDistillationIdle, "Distillation Tower");
+        LanguageRegistry.addName(blockVacuumDistillation, "Vacuum Distillation Tower");
         LanguageRegistry.addName(blockPolymerization, "Polymerization Unit");
         LanguageRegistry.addName(blockBunkerCHeater, "Bunker C Heater");
         LanguageRegistry.addName(blockMiscelator, "Miscelator");

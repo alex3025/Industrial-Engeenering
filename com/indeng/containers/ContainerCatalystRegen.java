@@ -21,7 +21,7 @@ public class ContainerCatalystRegen extends Container {
 	}
 	
 	private void layoutContainer(IInventory playerInventory, IInventory inventory) {
-		addSlotToContainer(new Slot(inventory, 0, 60, 24));
+		addSlotToContainer(new Slot(inventory, 0, 80, 24));
 		for (int inventoryRow = 0; inventoryRow < 3; inventoryRow++)
 		{
 			for (int inventoryColumn = 0; inventoryColumn < 9; inventoryColumn++)

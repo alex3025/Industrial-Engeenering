@@ -120,5 +120,14 @@ public class CommonProxy implements IGuiHandler{
 		
 		// Salt Water
 		LiquidUtils.addLiquid("Salt Water", 3404, 0, 3400, 0, new ArrayList<String>(){{add("H2O, NaCl");}});
+		
+		// Hasphalt
+		LiquidUtils.addLiquid("Hasphalt", 3424, 10, 3425, 9, new ArrayList<String>(){{add("> C90");}});
+		
+		// Paraffin
+		LiquidUtils.addLiquid("Paraffin", 3426, 11, 3427, 10, new ArrayList<String>(){{add("> C20");}});
+		
+		// Lubricant
+		LiquidUtils.addLiquid("Lubricant", 3428, 12, 3429, 11, new ArrayList<String>(){{add("> H18, O35");}});
 	}
 }

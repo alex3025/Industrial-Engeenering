@@ -1,6 +1,7 @@
 package com.indeng.entity;
 
 import com.indeng.item.ItemCatalizer;
+import com.indeng.item.Items;
 
 import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileLoadEvent;

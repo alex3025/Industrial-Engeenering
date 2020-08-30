@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.indeng.client.TextureLiquidsFX;
 import com.indeng.core.ModCreativeTab;
-import com.indeng.item.ItemCell;
+import com.indeng.entity.ItemCell;
 
 import cpw.mods.fml.client.TextureFXManager;
 import cpw.mods.fml.common.network.NetworkRegistry;

@@ -1,38 +1,26 @@
 package com.indeng.entity;
 
-import com.indeng.block.Blocks;
-
-import com.indeng.api.DistillationTowerFuel.FuelType;
 import com.indeng.api.DistillationTowerFuelManager;
-import com.indeng.block.BlockDistillationTower;
+import com.indeng.api.DistillationTowerFuel.FuelType;
+import com.indeng.block.BlockVacuumDistillationTower;
 import com.indeng.block.Blocks;
 
-
-import ic2.api.Direction;
-import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
-import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityDistillationTower extends TileEntity implements ITankContainer {
+public class TileEntityVacuumDistillationTower extends TileEntity implements ITankContainer {
 	
-
-	int crudeP = 0;
-	int hfoP = 0;
-	int fuelP = 0;
-	int kerosenP = 0;
-	int gasolineP = 0;
-	int gplP = 0;
+	int bunkerP = 0;
+	int lubricantP = 0;
+	int paraffinP = 0;
+	int asphaltP = 0;
 	public boolean formed;
 	public boolean fueled;
 	public boolean lastFueled = false;
@@ -101,16 +89,13 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 			} else if (fueled){
 				this.audioDuration = 100;
 				Minecraft.getMinecraft().sndManager.playSound("machines.bruciatore", xCoord, yCoord, zCoord, 1f, 1);
-				//worldObj.playSound(xCoord, yCoord, zCoord, "machines.bruciatore", 0.4f, 0.5f, false);
 			}
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			
-			crudeP = 0;
-			hfoP = 0;
-			fuelP = 0;
-			kerosenP = 0;
-			gasolineP = 0;
-			gplP = 0;
+			bunkerP = 0;
+			lubricantP = 0;
+			paraffinP = 0;
+			asphaltP = 0;
 			
 			if(fuel.getLiquid() != null) {
 				if(fuel.getLiquid().amount >= 1000 && !fueled) {
@@ -118,10 +103,8 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 						this.burnTime += DistillationTowerFuelManager.getBurnTime(fuel.getLiquid());
 						if(DistillationTowerFuelManager.getType(fuel.getLiquid()) == FuelType.LIQUID) {
 							this.currentType = FuelType.LIQUID;
-							//BlockDistillationTower.updateDistillationState(worldObj, xCoord, yCoord, zCoord, Blocks.blockDistillationDiesel.blockID);
 						} else if(DistillationTowerFuelManager.getType(fuel.getLiquid()) == FuelType.GAS) {
 							this.currentType = FuelType.GAS;
-							//BlockDistillationTower.updateDistillationState(worldObj, xCoord, yCoord, zCoord, Blocks.blockDistillationGPL.blockID);
 						}
 						this.fuel.drain(1000, true);
 					}
@@ -131,13 +114,13 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 			fueled = burnTime > 0;
 			
 			if(!fueled) {
-				BlockDistillationTower.updateDistillationState(worldObj, xCoord, yCoord, zCoord, Blocks.blockDistillationIdle.blockID);
+				BlockVacuumDistillationTower.updateDistillationState(worldObj, xCoord, yCoord, zCoord, Blocks.blockVacuumDistillation.blockID);
 			} 
 			if(fueled) {
 				if(this.currentType == FuelType.LIQUID) {
-					BlockDistillationTower.updateDistillationState(worldObj, xCoord, yCoord, zCoord, Blocks.blockDistillationDiesel.blockID);
+					BlockVacuumDistillationTower.updateDistillationState(worldObj, xCoord, yCoord, zCoord, Blocks.blockVacuumDistillationDiesel.blockID);
 				} else {
-					BlockDistillationTower.updateDistillationState(worldObj, xCoord, yCoord, zCoord, Blocks.blockDistillationGPL.blockID);
+					BlockVacuumDistillationTower.updateDistillationState(worldObj, xCoord, yCoord, zCoord, Blocks.blockVacuumDistillationGPL.blockID);
 				}
 			}
 			
@@ -147,68 +130,15 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 				}
 			}
 			
-			/*
-			if(fuel.getLiquid() != null) {
-				if(fuel.getLiquid().isLiquidEqual(LiquidDictionary.getLiquid("Fuel", fuel.getLiquid().amount))) {
-					if (!this.lastFueled || tickForFuel >= 20*120) {
-						if (this.fuel.getLiquid() != null) {
-							if(this.fuel.getLiquid().amount >= 1000) {
-								TileEntityDistillationTower te = this;
-								this.worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, Blocks.blockDistillationDiesel.blockID, this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord));
-								this.worldObj.setBlockTileEntity(xCoord, yCoord, zCoord, te);
-								this.lastFueled = true;
-								this.tickForFuel = 0;
-								this.fueled = true;
-								this.lastFuelEntered = 1;
-								this.fuel.drain(1000, true);
-							} else {
-								this.fueled = false;
-							}
-						} else {
-							this.fueled = false;
-						}
-					}
-				} else if(fuel.getLiquid().isLiquidEqual(LiquidDictionary.getLiquid("GPL", fuel.getLiquid().amount))) {
-					if (!this.lastFueled || tickForFuel >= 20*90) {
-						this.tickForFuel = 0;
-						System.out.println("Ticcato");
-						if (this.fuel.getLiquid() != null) {
-							if(this.fuel.getLiquid().amount >= 1000) {
-								TileEntityDistillationTower te = this;
-								this.worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, Blocks.blockDistillationGPL.blockID, this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord));
-								this.worldObj.setBlockTileEntity(xCoord, yCoord, zCoord, te);
-								this.lastFueled = true;
-								this.fueled = true;
-								this.lastFuelEntered = 2;
-								this.fuel.drain(1000, true);
-								System.out.println("Accendo");
-							} else {
-								this.fueled = false;
-							}
-						} else {
-							this.fueled = false;
-						}
-					}
-				} else {
-					TileEntityDistillationTower te = this;
-					this.worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, Blocks.blockDistillationIdle.blockID, this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord));
-					this.worldObj.setBlockTileEntity(xCoord, yCoord, zCoord, te);
-				}
-			} else {
-				this.lastFueled = false;
-			}
-			*/
 			
 			if(fueled) {
 				if(this.tank.getLiquid() != null) {
 					worldObj.spawnParticle("smoke", (double)(xCoord + 0.5), (double)yCoord+7.3, (double)(zCoord + 0.5), 0.0D, 0.2D, 0.0D);
 					if (tank.getLiquid().amount >= 1000) {
-						crudeP = (tank.getLiquid().amount * 17)/100;
-						hfoP = (tank.getLiquid().amount * 10)/100;
-						fuelP = (tank.getLiquid().amount * 35)/100;
-						kerosenP = (tank.getLiquid().amount * 7)/100;
-						gasolineP = (tank.getLiquid().amount * 18)/100;
-						gplP = (tank.getLiquid().amount * 13)/100;
+						bunkerP = (tank.getLiquid().amount * 17)/100;
+						lubricantP = (tank.getLiquid().amount * 10)/100;
+						paraffinP = (tank.getLiquid().amount * 35)/100;
+						asphaltP = (tank.getLiquid().amount * 7)/100;
 						tank.drain(1000, true);
 					}
 				}
@@ -220,42 +150,28 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 				if(worldObj.getBlockTileEntity(xCoord, yCoord+1, zCoord) != null) {
 					TileEntityDistillationTank block1 = (TileEntityDistillationTank)worldObj.getBlockTileEntity(xCoord, yCoord+1, zCoord);
 					if(block1.tank != null) {
-						block1.tank.fill(LiquidDictionary.getLiquid("Crude Residue", crudeP), true);
+						block1.tank.fill(LiquidDictionary.getLiquid("Bunker C", bunkerP), true);
 					}
 				}
 				
 				if(worldObj.getBlockTileEntity(xCoord, yCoord+2, zCoord) != null){
 					TileEntityDistillationTank block2 = (TileEntityDistillationTank)worldObj.getBlockTileEntity(xCoord, yCoord+2, zCoord);
 					if(block2.tank != null) {
-						block2.tank.fill(LiquidDictionary.getLiquid("HFO", hfoP), true);
+						block2.tank.fill(LiquidDictionary.getLiquid("Lubricant", lubricantP), true);
 					}
 				}
 				
 				if(worldObj.getBlockTileEntity(xCoord, yCoord+3, zCoord) != null){
 					TileEntityDistillationTank block3 = (TileEntityDistillationTank)worldObj.getBlockTileEntity(xCoord, yCoord+3, zCoord);
 					if(block3.tank != null) {
-						block3.tank.fill(LiquidDictionary.getLiquid("Fuel", fuelP), true);
+						block3.tank.fill(LiquidDictionary.getLiquid("Paraffin", paraffinP), true);
 					}
 				}
 				
 				if(worldObj.getBlockTileEntity(xCoord, yCoord+4, zCoord) != null){
 					TileEntityDistillationTank block4 = (TileEntityDistillationTank)worldObj.getBlockTileEntity(xCoord, yCoord+4, zCoord);
 					if(block4.tank != null) {
-						block4.tank.fill(LiquidDictionary.getLiquid("Kerosene", kerosenP), true);
-					}
-				}
-				
-				if(worldObj.getBlockTileEntity(xCoord, yCoord+5, zCoord) != null){
-					TileEntityDistillationTank block5 = (TileEntityDistillationTank)worldObj.getBlockTileEntity(xCoord, yCoord+5, zCoord);
-					if(block5.tank != null) {
-						block5.tank.fill(LiquidDictionary.getLiquid("Gasoline", gasolineP), true);
-					}
-				}
-				
-				if(worldObj.getBlockTileEntity(xCoord, yCoord+6, zCoord) != null){
-					TileEntityDistillationTank block6 = (TileEntityDistillationTank)worldObj.getBlockTileEntity(xCoord, yCoord+6, zCoord);
-					if(block6.tank != null) {
-						block6.tank.fill(LiquidDictionary.getLiquid("GPL", gplP), true);
+						block4.tank.fill(LiquidDictionary.getLiquid("Asphalt", asphaltP), true);
 					}
 				}
 				
@@ -267,14 +183,14 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 	
 	public void checkFormed() {
 		int finded = 0;
-		for (int i=1; i < 7; i++) {
+		for (int i=1; i < 5; i++) {
 			int block = worldObj.getBlockId(xCoord, yCoord+i, zCoord);
 			if (block == Blocks.blockDistillationTank.blockID) {
 				finded++;
 			}
 		}
 		
-		if (finded == 6) {
+		if (finded == 4) {
 			this.formed = true;
 		} else {
 			this.formed = false;
@@ -296,7 +212,7 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 			return 0;
 		}
 		
-		if(resource.isLiquidEqual(LiquidDictionary.getLiquid("Oil", resource.amount))) {
+		if(resource.isLiquidEqual(LiquidDictionary.getLiquid("Crude Residue", resource.amount))) {
 			if(!formed) 
 				return 0;
 			
@@ -361,8 +277,4 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 		// TODO Auto-generated method stub
 		return tank;
 	}
-	
-
-	
-	
 }

@@ -1,4 +1,4 @@
-package com.indeng.item;
+package com.indeng.entity;
 
 import java.util.ArrayList;
 import java.util.List;
