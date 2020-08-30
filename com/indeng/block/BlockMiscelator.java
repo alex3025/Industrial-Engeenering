@@ -1,6 +1,6 @@
 package com.indeng.block;
 
-import com.indeng.entity.TileEntityPolymerizationUnit;
+import com.indeng.entity.TileEntityMiscelator;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -10,19 +10,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class PolymerizationUnit extends BlockContainer{
-	
+public class BlockMiscelator extends BlockContainer {
+
 	int gMeta = 0;
 	ForgeDirection dir;
 	
-	protected PolymerizationUnit(int par1, int par2, Material par3Material) {
+	protected BlockMiscelator(int par1, int par2, Material par3Material) {
 		super(par1, par2, par3Material);
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World var1) {
-
-		return new TileEntityPolymerizationUnit(dir);
 	}
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity) {
@@ -53,16 +47,9 @@ public class PolymerizationUnit extends BlockContainer{
 		}
 	}
 	
-	public int getRenderType() {
-		return -1;
+	@Override
+	public TileEntity createNewTileEntity(World var1) {
+		return new TileEntityMiscelator(dir);
 	}
 
-	public boolean isOpaqueCube() {
-		return false;
-	}
-
-	public boolean renderAsNormalBlock() {
-		return false;
-	}
-	
 }

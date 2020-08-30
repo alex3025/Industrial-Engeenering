@@ -6,9 +6,11 @@ import com.indeng.block.Blocks;
 import com.indeng.common.CommonProxy;
 import com.indeng.common.SoundHandler;
 import com.indeng.entity.OsmoGeneratorEnergy;
+import com.indeng.entity.TileEntityBunkerCHeater;
 import com.indeng.entity.TileEntityDistillationTank;
 import com.indeng.entity.TileEntityPolymerizationUnit;
 import com.indeng.entity.TileEntityTest;
+import com.indeng.models.RenderTableBunkerCHeater;
 import com.indeng.models.RenderTableDistillationTank;
 import com.indeng.models.RenderTablePolymerizationUnit;
 
@@ -124,6 +126,7 @@ public class ClientProxy extends CommonProxy{
 		super.init();
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPolymerizationUnit.class, new RenderTablePolymerizationUnit());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBunkerCHeater.class, new RenderTableBunkerCHeater());
 	}
 	
 }

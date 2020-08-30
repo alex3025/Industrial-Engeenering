@@ -1,6 +1,6 @@
 package com.indeng.block;
 
-import com.indeng.entity.TileEntityPolymerizationUnit;
+import com.indeng.entity.TileEntityBunkerCHeater;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -10,19 +10,20 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class PolymerizationUnit extends BlockContainer{
-	
+public class BlockBunkerCHeater extends BlockContainer {
+
 	int gMeta = 0;
 	ForgeDirection dir;
 	
-	protected PolymerizationUnit(int par1, int par2, Material par3Material) {
+	protected BlockBunkerCHeater(int par1, int par2, Material par3Material) {
 		super(par1, par2, par3Material);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-
-		return new TileEntityPolymerizationUnit(dir);
+		// TODO Auto-generated method stub
+		return new TileEntityBunkerCHeater(dir);
 	}
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity) {
@@ -64,5 +65,5 @@ public class PolymerizationUnit extends BlockContainer{
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
-	
+
 }

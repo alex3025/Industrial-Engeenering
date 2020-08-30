@@ -13,5 +13,6 @@ public class Entities {
 		GameRegistry.registerTileEntity(TileEntityDistillationTower.class, "teDistillation");
 		GameRegistry.registerTileEntity(TileEntityDistillationTank.class, "teDistillationTank");
 		GameRegistry.registerTileEntity(TileEntityPolymerizationUnit.class, "tePolymerization");
+		GameRegistry.registerTileEntity(TileEntityBunkerCHeater.class, "teBunkerCHeater");
 	}
 }

@@ -15,7 +15,7 @@ import com.indeng.core.ModCreativeTab;
 public class Blocks {
 	public static List<Block> blocks = new ArrayList<Block>();
 
-    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationDiesel, blockDistillationGPL, blockDistillationTank, blockPolymerization;
+    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationDiesel, blockDistillationGPL, blockDistillationTank, blockPolymerization, blockBunkerCHeater, blockMiscelator;
 
     public static void initBlocks(){
     	blocks.add(blockDistillationIdle = new BlockDistillationTower(3302, 0, Material.iron, "none").setBlockName("blockDistillation")); 
@@ -26,13 +26,17 @@ public class Blocks {
         blocks.add(blockOsmoGen = new BlockOsmoGen(3405, 0, Material.iron).setBlockName("blockOsmoGenIdle"));
         blocks.add(blockTest = new TestBlock(3301, 0, Material.iron).setBlockName("blockTest"));
         blocks.add(blockPolymerization = new PolymerizationUnit(3310, 0, Material.iron).setBlockName("blockPolymerization"));
+        blocks.add(blockBunkerCHeater = new BlockBunkerCHeater(3311, 0, Material.iron).setBlockName("blockBunkerCHeater"));
+        blocks.add(blockMiscelator = new BlockMiscelator(3312, 0, Material.iron).setBlockName("blockMiscelator"));
         LanguageRegistry.addName(blockOsmo, "Salt Extractor");
         LanguageRegistry.addName(blockTest, "Test Block");
         LanguageRegistry.addName(blockOsmoGen, "Osmosis Generator");
         LanguageRegistry.addName(blockDistillationIdle, "Distillation Tower");
         LanguageRegistry.addName(blockPolymerization, "Polymerization Unit");
+        LanguageRegistry.addName(blockBunkerCHeater, "Bunker C Heater");
+        LanguageRegistry.addName(blockMiscelator, "Miscelator");
     }
-
+    
     public static void registerBlocks(){
         for (int i=0; i < blocks.size(); i++){
         	if(blocks.get(i).blockID != 3304 && blocks.get(i).blockID != 3305) {
