@@ -134,9 +134,6 @@ public class BlockCatalystRegen extends BlockContainer {
 	}
 	
 	
-	public String getTextureFile() {
-		return "/com/indeng/sprites/torredist.png";
-	}
 
 	public boolean isOpaqueCube() {
 		return false;

@@ -15,8 +15,7 @@ import com.indeng.core.ModCreativeTab;
 public class Blocks {
 	public static List<Block> blocks = new ArrayList<Block>();
 
-    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationDiesel, blockDistillationGPL, blockPolymerization, blockBunkerCHeater, blockMiscelator, blockCatalystRegen, blockVacuumDistillation, blockVacuumDistillationDiesel, blockVacuumDistillationGPL, blockCracker, blockReformer, blockHydroCracker;
-    public static BlockDistillationTank blockDistillationTank;
+    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationTank, blockDistillationDiesel, blockDistillationGPL, blockPolymerization, blockBunkerCHeater, blockMiscelator, blockCatalystRegen, blockVacuumDistillation, blockVacuumDistillationDiesel, blockVacuumDistillationGPL, blockCracker, blockReformer, blockHydroCracker, blockSteamReformer;
     
     public static void initBlocks(){
     	blocks.add(blockDistillationIdle = new BlockDistillationTower(3302, 0, Material.iron, "none").setBlockName("blockDistillation")); 
@@ -25,17 +24,18 @@ public class Blocks {
     	blocks.add(blockVacuumDistillationGPL = new BlockVacuumDistillationTower(3316, 0, Material.iron, "gpl").setBlockName("blockVacuumDistillationGPL")); 
     	blocks.add(blockDistillationDiesel = new BlockDistillationTower(3304, 0, Material.iron, "fuel").setBlockName("blockDistillationDiesel")); 
     	blocks.add(blockDistillationGPL = new BlockDistillationTower(3305, 0, Material.iron, "gpl").setBlockName("blockDistillationGPL")); 
-    	blocks.add(blockDistillationTank = (BlockDistillationTank) new BlockDistillationTank(3303, 0, Material.iron).setBlockName("blockDistillationTank")); 
+    	blocks.add(blockDistillationTank = new BlockDistillationTank(3303, 64, Material.iron).setBlockName("blockDistillationTank").setTextureFile("/com/indeng/sprites/items.png")); 
         blocks.add(blockOsmo = new BlockOsmo(3404, 0, Material.iron).setBlockName("blockOsmo"));
         blocks.add(blockOsmoGen = new BlockOsmoGen(3405, 0, Material.iron).setBlockName("blockOsmoGenIdle"));
         blocks.add(blockTest = new TestBlock(3301, 0, Material.iron).setBlockName("blockTest"));
-        blocks.add(blockPolymerization = new PolymerizationUnit(3310, 0, Material.iron).setBlockName("blockPolymerization"));
-        blocks.add(blockBunkerCHeater = new BlockBunkerCHeater(3311, 0, Material.iron).setBlockName("blockBunkerCHeater"));
-        blocks.add(blockMiscelator = new BlockMiscelator(3312, 0, Material.iron).setBlockName("blockMiscelator"));
-        blocks.add(blockCatalystRegen = new BlockCatalystRegen(3313, 0, Material.iron).setBlockName("blockCatalystRegen"));
-        blocks.add(blockCracker = new BlockCracker(3317, 0, Material.iron).setBlockName("blockCracker"));
-        blocks.add(blockReformer = new BlockReformer(3318, 0, Material.iron).setBlockName("blockReformer"));
-        blocks.add(blockHydroCracker = new BlockHydroCracker(3319, 0, Material.iron).setBlockName("blockHydroCracker"));
+        blocks.add(blockPolymerization = new PolymerizationUnit(3310, 65, Material.iron).setBlockName("blockPolymerization").setTextureFile("/com/indeng/sprites/items.png"));
+        blocks.add(blockBunkerCHeater = new BlockBunkerCHeater(3311, 66, Material.iron).setBlockName("blockBunkerCHeater").setTextureFile("/com/indeng/sprites/items.png"));
+        blocks.add(blockMiscelator = new BlockMiscelator(3312, 72, Material.iron).setBlockName("blockMiscelator").setTextureFile("/com/indeng/sprites/items.png"));
+        blocks.add(blockCatalystRegen = new BlockCatalystRegen(3313, 67, Material.iron).setBlockName("blockCatalystRegen").setTextureFile("/com/indeng/sprites/items.png"));
+        blocks.add(blockCracker = new BlockCracker(3317, 69, Material.iron).setBlockName("blockCracker").setTextureFile("/com/indeng/sprites/items.png"));
+        blocks.add(blockReformer = new BlockReformer(3318, 68, Material.iron).setBlockName("blockReformer").setTextureFile("/com/indeng/sprites/items.png"));
+        blocks.add(blockHydroCracker = new BlockHydroCracker(3319, 70, Material.iron).setBlockName("blockHydroCracker").setTextureFile("/com/indeng/sprites/items.png"));
+        blocks.add(blockSteamReformer = new BlockSteamReformer(3320, 71, Material.iron).setBlockName("blockSteamReformer").setTextureFile("/com/indeng/sprites/items.png"));
         LanguageRegistry.addName(blockOsmo, "Salt Extractor");
         LanguageRegistry.addName(blockTest, "Test Block");
         LanguageRegistry.addName(blockOsmoGen, "Osmosis Generator");
@@ -48,6 +48,7 @@ public class Blocks {
         LanguageRegistry.addName(blockCracker, "Catalyst Cracking Unit");
         LanguageRegistry.addName(blockReformer, "Catalyst Reforming Unit");
         LanguageRegistry.addName(blockHydroCracker, "Hydrocracking Unit");
+        LanguageRegistry.addName(blockSteamReformer, "Steam Reforming Unit");
     }
     
     public static void registerBlocks(){

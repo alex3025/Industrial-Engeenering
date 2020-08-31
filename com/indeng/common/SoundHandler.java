@@ -21,10 +21,12 @@ public class SoundHandler {
         try
         {
             event.manager.addSound("machines/bruciatore.ogg", new File("resources/mod/sound/bruciatore.ogg"));
+            event.manager.addSound("machines/bruciatorevuoto.ogg", new File("resources/mod/sound/bruciatorevuoto.ogg"));
             event.manager.addSound("machines/catalyst.ogg", new File("resources/mod/sound/catalystregen.ogg"));
             event.manager.addSound("machines/cracker.ogg", new File("resources/mod/sound/cracker.ogg"));
             event.manager.addSound("machines/reformer.ogg", new File("resources/mod/sound/reformer.ogg"));
             event.manager.addSound("machines/hydrocracker.ogg", new File("resources/mod/sound/hydrocracker.ogg"));
+            event.manager.addSound("machines/steamreformer.ogg", new File("resources/mod/sound/steamreformer.ogg"));
         }
         catch (Exception e)
         {

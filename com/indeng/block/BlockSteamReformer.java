@@ -1,6 +1,9 @@
 package com.indeng.block;
 
-import com.indeng.entity.TileEntityDistillationTank;
+import com.indeng.core.Core;
+import com.indeng.entity.TileEntityCracker;
+import com.indeng.entity.TileEntityHydroCracker;
+import com.indeng.entity.TileEntitySteamReformer;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -10,16 +13,22 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class BlockDistillationTank extends BlockContainer {
+public class BlockSteamReformer extends BlockContainer {
+
 	
 	int gMeta = 0;
 	ForgeDirection dir;
-    
-    
 	
-	public BlockDistillationTank(int par1, int par2, Material par3Material) {
+	protected BlockSteamReformer(int par1, int par2, Material par3Material) {
 		super(par1, par2, par3Material);
 	}
+	
+	
+	@Override
+	public TileEntity createNewTileEntity(World var1) {
+		return new TileEntitySteamReformer(dir);
+	}
+	
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity) {
 		super.onBlockPlacedBy(world, x, y, z, entity);
@@ -36,27 +45,22 @@ public class BlockDistillationTank extends BlockContainer {
 
 			if(facing/2 == 0) {
 				dir = ForgeDirection.NORTH;
-
 			} else if(facing/2 == 1) {
 				dir = ForgeDirection.EAST;
-
 			} else if(facing/2 == 2) {
 				dir = ForgeDirection.SOUTH;
-
 			} else if(facing/2 ==  3) {
 				dir = ForgeDirection.WEST;
-
 			} else {
 				dir = ForgeDirection.EAST;
 			}
+			
 		}
 	}
 	
-	@Override
-	public TileEntity createNewTileEntity(World var1) {
-		return new TileEntityDistillationTank(dir);
+	public int getRenderType() {
+		return -1;
 	}
-	
 
 	public boolean isOpaqueCube() {
 		return false;
@@ -66,8 +70,4 @@ public class BlockDistillationTank extends BlockContainer {
 		return false;
 	}
 	
-	public int getRenderType() {
-		return -1;
-	}
-
 }

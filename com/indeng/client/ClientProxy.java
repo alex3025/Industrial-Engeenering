@@ -14,6 +14,7 @@ import com.indeng.entity.TileEntityHydroCracker;
 import com.indeng.entity.TileEntityMiscelator;
 import com.indeng.entity.TileEntityPolymerizationUnit;
 import com.indeng.entity.TileEntityReformer;
+import com.indeng.entity.TileEntitySteamReformer;
 import com.indeng.entity.TileEntityTest;
 import com.indeng.guis.GuiCatalystRegen;
 import com.indeng.guis.GuiCracker;
@@ -26,6 +27,7 @@ import com.indeng.models.RenderTableDistillationTank;
 import com.indeng.models.RenderTableGasMixingUnit;
 import com.indeng.models.RenderTableHydroCracker;
 import com.indeng.models.RenderTablePolymerizationUnit;
+import com.indeng.models.RenderTableSteamReformer;
 
 import cpw.mods.fml.client.TextureFXManager;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -168,6 +170,7 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCracker.class, new RenderTableCatalyticCracker());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityReformer.class, new RenderTableCatalyticReformer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHydroCracker.class, new RenderTableHydroCracker());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySteamReformer.class, new RenderTableSteamReformer());
 	}
 	
 }

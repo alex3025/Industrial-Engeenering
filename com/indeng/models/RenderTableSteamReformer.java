@@ -8,12 +8,11 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 
-public class RenderTableHydroCracker extends TileEntitySpecialRenderer {
-
-	private ModelHydrocrackingUnit Cracker;
+public class RenderTableSteamReformer extends TileEntitySpecialRenderer {
+	private ModelSteamReformer Cracker;
 	
-	public RenderTableHydroCracker() {
-		Cracker = new ModelHydrocrackingUnit();
+	public RenderTableSteamReformer() {
+		Cracker = new ModelSteamReformer();
 	}
 	
 	@Override
@@ -23,7 +22,7 @@ public class RenderTableHydroCracker extends TileEntitySpecialRenderer {
 
 		int direction = 2;
 		if (tileentity.getWorldObj().getBlockId(tileentity.xCoord, tileentity.yCoord,
-				tileentity.zCoord) == Blocks.blockHydroCracker.blockID) {
+				tileentity.zCoord) == Blocks.blockSteamReformer.blockID) {
 			direction = tileentity.getWorldObj().getBlockMetadata(tileentity.xCoord, tileentity.yCoord,
 					tileentity.zCoord) + 1;
 			if (direction == 1) {
@@ -43,9 +42,8 @@ public class RenderTableHydroCracker extends TileEntitySpecialRenderer {
 		GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 		
 		GL11.glRotatef(direction * 90, 0.0F, 1.0F, 0.0F);
-		bindTextureByName("/com/indeng/sprites/HydrocrackingUnit.png");
+		bindTextureByName("/com/indeng/sprites/SteamReformer.png");
 		Cracker.render((Entity) null, 0.0F, -0.1F, 0.0F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
 	}
-
 }

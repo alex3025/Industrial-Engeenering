@@ -88,7 +88,7 @@ public class TileEntityVacuumDistillationTower extends TileEntity implements ITa
 				this.audioDuration--;
 			} else if (fueled){
 				this.audioDuration = 100;
-				Minecraft.getMinecraft().sndManager.playSound("machines.bruciatore", xCoord, yCoord, zCoord, 1f, 1);
+				Minecraft.getMinecraft().sndManager.playSound("machines.bruciatorevuoto", xCoord, yCoord, zCoord, 1f, 1);
 			}
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			
