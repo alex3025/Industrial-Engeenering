@@ -90,7 +90,7 @@ public class CommonProxy implements IGuiHandler{
 
 	public static void initLiquids() {
 		// Town Gas
-		LiquidUtils.addLiquid("Town Gas", 3422, 9, 3423, 8, new ArrayList<String>(){{add("CO, H2");}});
+		LiquidUtils.addLiquid("Town Gas", 3822, 9, 21523, 8, new ArrayList<String>(){{add("CO, H2");}});
 		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("Town Gas", LiquidContainerRegistry.BUCKET_VOLUME), 78800);
 		DistillationTowerFuelManager.addFuel(new DistillationTowerFuel(LiquidDictionary.getLiquid("Town Gas", LiquidContainerRegistry.BUCKET_VOLUME), 3660, FuelType.GAS));
 		
@@ -98,46 +98,46 @@ public class CommonProxy implements IGuiHandler{
 		DistillationTowerFuelManager.addFuel(new DistillationTowerFuel(LiquidDictionary.getLiquid("Fuel", LiquidContainerRegistry.BUCKET_VOLUME), 6000, FuelType.LIQUID));
 		
 		// GPL
-		LiquidUtils.addLiquid("GPL", 3405, 1, 3406, 1, new ArrayList<String>(){{add("C3H8, C4");}});
+		LiquidUtils.addLiquid("GPL", 3405, 1, 21506, 1, new ArrayList<String>(){{add("C3H8, C4");}});
 		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("GPL", LiquidContainerRegistry.BUCKET_VOLUME), 84000);
 		DistillationTowerFuelManager.addFuel(new DistillationTowerFuel(LiquidDictionary.getLiquid("GPL", LiquidContainerRegistry.BUCKET_VOLUME), 3900, FuelType.GAS));
 		
 		// CO
-		LiquidUtils.addLiquid("Carbon Monoxide", 3419, 8, new ItemCellCO(3420).setIconIndex(7));
+		LiquidUtils.addLiquid("Carbon Monoxide", 3819, 8, new ItemCellCO(21520).setIconIndex(7));
 		
 		// Gasoline
-		LiquidUtils.addLiquid("Gasoline", 3407, 2, 3408, 2, new ArrayList<String>(){{add("C8");}});
+		LiquidUtils.addLiquid("Gasoline", 3807, 2, 21508, 2, new ArrayList<String>(){{add("C8");}});
 		IronEngineFuel.fuels.add(new IronEngineFuel(LiquidDictionary.getLiquid("Gasoline", LiquidContainerRegistry.BUCKET_VOLUME), 10, 90000));
 		
 		// Naphtha
-		LiquidUtils.addLiquid("Kerosene", 3409, 3, 3410, 3, new ArrayList<String>(){{add("C15");}});
+		LiquidUtils.addLiquid("Kerosene", 3809, 3, 21510, 3, new ArrayList<String>(){{add("C15");}});
 		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("Kerosene", LiquidContainerRegistry.BUCKET_VOLUME), 41000);
 		
 		// HFO
-		LiquidUtils.addLiquid("HFO", 3411, 4, 3412, 4, new ArrayList<String>(){{add("C24");}});
+		LiquidUtils.addLiquid("HFO", 3811, 4, 21512, 4, new ArrayList<String>(){{add("C24");}});
 		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("HFO", LiquidContainerRegistry.BUCKET_VOLUME), 105000);
 		DistillationTowerFuelManager.addFuel(new DistillationTowerFuel(LiquidDictionary.getLiquid("HFO", LiquidContainerRegistry.BUCKET_VOLUME), 6600, FuelType.LIQUID));
 		
 		// BunkerC
-		LiquidUtils.addLiquid("Bunker C", 3415, 6, 3416, 6, new ArrayList<String>(){{add("Category H");}});
+		LiquidUtils.addLiquid("Bunker C", 3815, 6, 21516, 81, new ArrayList<String>(){{add("Category H");}});
 		
 		// Heated BunkerC
-		LiquidUtils.addLiquid("Heated Bunker C", 3417, 7, 3418, 6, new ArrayList<String>(){{add("Category H"); add("This can be burnt in a boiler");}});
+		LiquidUtils.addLiquid("Heated Bunker C", 3817, 7, 21518, 82, new ArrayList<String>(){{add("Category H"); add("This can be burnt in a boiler");}});
 		FuelManager.addBoilerFuel(LiquidDictionary.getLiquid("Heated Bunker C", LiquidContainerRegistry.BUCKET_VOLUME), 125000);
 		
 		// Crude residue
-		LiquidUtils.addLiquid("Crude Residue", 3413, 5, 3414, 5, new ArrayList<String>(){{add("> C24");}});
+		LiquidUtils.addLiquid("Crude Residue", 3813, 5, 21514, 5, new ArrayList<String>(){{add("> C24");}});
 		
 		// Salt Water
-		LiquidUtils.addLiquid("Salt Water", 3404, 0, 3400, 0, new ArrayList<String>(){{add("H2O, NaCl");}});
+		LiquidUtils.addLiquid("Salt Water", 3804, 0, 21500, 0, new ArrayList<String>(){{add("H2O, NaCl");}});
 		
 		// Hasphalt
-		LiquidUtils.addLiquid("Hasphalt", 3424, 10, 3425, 9, new ArrayList<String>(){{add("> C90");}});
+		LiquidUtils.addLiquid("Hasphalt", 3824, 10, 21525, 83, new ArrayList<String>(){{add("> C90");}});
 		
 		// Paraffin
-		LiquidUtils.addLiquid("Paraffin", 3426, 11, 3427, 10, new ArrayList<String>(){{add("> C20");}});
+		LiquidUtils.addLiquid("Paraffin", 3826, 11, 21527, 84, new ArrayList<String>(){{add("> C20");}});
 		
 		// Lubricant
-		LiquidUtils.addLiquid("Lubricant", 3428, 12, 3429, 11, new ArrayList<String>(){{add("> H18, O35");}});
+		LiquidUtils.addLiquid("Lubricant", 3828, 12, 21529, 85, new ArrayList<String>(){{add("> H18, O35");}});
 	}
 }

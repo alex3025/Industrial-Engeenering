@@ -19,17 +19,19 @@ public class Items {
 	
 	 public static List<Item> items = new ArrayList<Item>();
 	 
-	 public static Item catA, catB, catC, catD;
+	 public static Item catA, catB, catC, catD, jar;
 	 
 	public static void initItems() {
-		items.add(catA = new ItemCatalizer(3501, 0).setItemName("catA"));
-		items.add(catB = new ItemCatalizer(3502, 1).setItemName("catB"));
-		items.add(catC = new ItemCatalizer(3503, 2).setItemName("catC"));
-		items.add(catD = new ItemCatalizer(3504, 3).setItemName("catD"));
+		items.add(catA = new ItemCatalizer(3701, 0).setItemName("catA"));
+		items.add(catB = new ItemCatalizer(3702, 1).setItemName("catB"));
+		items.add(catC = new ItemCatalizer(3703, 2).setItemName("catC"));
+		items.add(catD = new ItemCatalizer(3704, 3).setItemName("catD"));
+		items.add(jar = new Item(3705).setItemName("jar").setIconIndex(80));
 		LanguageRegistry.addName(catA, "Catalizer A");
 		LanguageRegistry.addName(catB, "Catalizer B");
 		LanguageRegistry.addName(catC, "Catalizer C");
 		LanguageRegistry.addName(catD, "Catalizer D");
+		LanguageRegistry.addName(jar, "Empty Jar");
 	}
 	
 	
