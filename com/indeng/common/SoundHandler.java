@@ -22,6 +22,7 @@ public class SoundHandler {
         try
         {
             event.manager.addSound("machines/bruciatore.ogg", new File("resources/mod/sound/bruciatore.ogg"));
+            event.manager.addSound("machines/catalyst.ogg", new File("resources/mod/sound/catalystregen.ogg"));
         }
         catch (Exception e)
         {

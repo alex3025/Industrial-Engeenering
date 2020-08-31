@@ -6,6 +6,7 @@ import com.indeng.item.Items;
 import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.tile.IEnergySink;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,8 @@ public class TileEntityCatalystRegen extends TileEntity implements IInventory, I
 	public int energy = 0;
 	public boolean initialized = false;
 	boolean powered;
+	public int audioDuration = 0;
+	public int tickforpower = 0;
 	
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound) {
@@ -71,12 +74,50 @@ public class TileEntityCatalystRegen extends TileEntity implements IInventory, I
 			}
 		}
 		
-		ItemStack stack = inv[0];
-		if(stack != null && this.energy >= 250) {
-			if(stack.getItemDamage() > 0) {
-				this.energy = 0;
-				stack.setItemDamage(stack.getItemDamage()-5);
-				this.setInventorySlotContents(0, stack);
+		if(!worldObj.isRemote) {
+			
+			
+			
+			ItemStack stack = inv[0];
+			
+			if(stack != null) {
+				if(this.energy <= 0 || stack.getItemDamage() <= 0) {
+					if(tickforpower > 0) {
+						tickforpower--;
+					}
+					if(tickforpower == 0) {
+						this.powered = false;
+					}
+				}
+			}
+			
+			if(stack == null) {
+				if(tickforpower > 0) {
+					tickforpower--;
+				}
+				if(tickforpower == 0) {
+					this.powered = false;
+				}
+			}
+			
+			
+			
+			if(this.audioDuration > 0 && powered) {
+				this.audioDuration--;
+				System.out.println("Accendo 2");
+			} else if (powered){
+				System.out.println("Accendo");
+				this.audioDuration = 200;
+				Minecraft.getMinecraft().sndManager.playSound("machines.catalyst", xCoord, yCoord, zCoord, 1f, 1);
+			}
+			if(stack != null && this.energy >= 250) {
+				powered = true;
+				tickforpower = 3;
+				if(stack.getItemDamage() > 0) {
+					this.energy = 0;
+					stack.setItemDamage(stack.getItemDamage()-5);
+					this.setInventorySlotContents(0, stack);
+				}
 			}
 		}
 	}

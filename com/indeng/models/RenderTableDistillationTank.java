@@ -16,11 +16,10 @@ import net.minecraft.world.IBlockAccess;
 
 public class RenderTableDistillationTank extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 	private ModelDistillationTower DistillationTank;
-	private int renderId;
 	
-	public RenderTableDistillationTank(int renderId) {
+	public RenderTableDistillationTank() {
 		DistillationTank = new ModelDistillationTower();
-		this.renderId = renderId;
+
 	}
 	
 	@Override
@@ -79,6 +78,8 @@ public class RenderTableDistillationTank extends TileEntitySpecialRenderer imple
 
 	@Override
 	public int getRenderId() {
-		return this.renderId;
+		// TODO Auto-generated method stub
+		return -1;
 	}
+
 }

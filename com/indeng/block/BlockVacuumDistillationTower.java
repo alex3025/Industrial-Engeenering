@@ -67,20 +67,22 @@ public class BlockVacuumDistillationTower extends BlockContainer {
 		// 4: Left
 		// 5: Right
 		
-		int front = 17;
+		int front = 33;
 		
 		if(this.fuel == "fuel") {
-			front = 19;
+			front = 35;
 		} else if(this.fuel == "gpl") {
-			front = 18;
+			front = 34;
 		}
 		
 		if (metadata == 0 && blockSide == 3)
 			return front;
 
-		
+		if(blockSide == 0)
+			return 36;
+			
 		if (blockSide == 1)
-			return 16;
+			return 36;
 
 		if (blockSide == metadata)
 			return front;
@@ -89,7 +91,7 @@ public class BlockVacuumDistillationTower extends BlockContainer {
 		
 		
 		// Lati
-		return 16;
+		return 32;
 
 	}
 	

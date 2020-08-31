@@ -14,6 +14,7 @@ import com.indeng.entity.TileEntityPolymerizationUnit;
 import com.indeng.entity.TileEntityTest;
 import com.indeng.guis.GuiCatalystRegen;
 import com.indeng.models.RenderTableBunkerCHeater;
+import com.indeng.models.RenderTableCatalystRegen;
 import com.indeng.models.RenderTableDistillationTank;
 import com.indeng.models.RenderTableGasMixingUnit;
 import com.indeng.models.RenderTablePolymerizationUnit;
@@ -47,10 +48,9 @@ public class ClientProxy extends CommonProxy{
 		System.out.println("Loading client liquids");
         
         final int distillationTankRenderID = RenderingRegistry.getNextAvailableRenderId();
-        final RenderTableDistillationTank distillationTankRenderer = new RenderTableDistillationTank(distillationTankRenderID);
         //Blocks.blockDistillationTank.setRenderType(distillationTankRenderID);
-        ClientRegistry.bindTileEntitySpecialRenderer((Class)TileEntityDistillationTank.class, (TileEntitySpecialRenderer)distillationTankRenderer);
-        RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler)distillationTankRenderer);
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDistillationTank.class, new RenderTableDistillationTank(distillationTankRenderID));
+        
 		
 
 		//Salt Water
@@ -112,6 +112,18 @@ public class ClientProxy extends CommonProxy{
 	            "/com/indeng/sprites/textures.png");
 	    townFX.tileImage = 3595;
 	    TextureFXManager.instance().addAnimation(townFX); 
+	    
+	    //Lubricant
+	    TextureLiquidsFX lubricantFX = new TextureLiquidsFX(212, 242, 90, 104, 36, 56, 12,
+	            "/com/indeng/sprites/textures.png");
+	    lubricantFX.tileImage = 3595;
+	    TextureFXManager.instance().addAnimation(lubricantFX);
+	    
+	    //Asphalt
+	    TextureLiquidsFX asphaltFX = new TextureLiquidsFX(74, 97, 74, 97, 74, 97, 10,
+	            "/com/indeng/sprites/textures.png");
+	    asphaltFX.tileImage = 3595;
+	    TextureFXManager.instance().addAnimation(asphaltFX);
 		
 	}
 	
@@ -134,10 +146,11 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void init() {
 		super.init();
-
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDistillationTank.class, new RenderTableDistillationTank());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPolymerizationUnit.class, new RenderTablePolymerizationUnit());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBunkerCHeater.class, new RenderTableBunkerCHeater());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiscelator.class, new RenderTableGasMixingUnit());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCatalystRegen.class, new RenderTableCatalystRegen());
 	}
 	
 }

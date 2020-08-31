@@ -135,10 +135,10 @@ public class TileEntityVacuumDistillationTower extends TileEntity implements ITa
 				if(this.tank.getLiquid() != null) {
 					worldObj.spawnParticle("smoke", (double)(xCoord + 0.5), (double)yCoord+7.3, (double)(zCoord + 0.5), 0.0D, 0.2D, 0.0D);
 					if (tank.getLiquid().amount >= 1000) {
-						bunkerP = (tank.getLiquid().amount * 17)/100;
-						lubricantP = (tank.getLiquid().amount * 10)/100;
-						paraffinP = (tank.getLiquid().amount * 35)/100;
-						asphaltP = (tank.getLiquid().amount * 7)/100;
+						bunkerP = (tank.getLiquid().amount * 36)/100;
+						lubricantP = (tank.getLiquid().amount * 12)/100;
+						paraffinP = (tank.getLiquid().amount * 15)/100;
+						asphaltP = (tank.getLiquid().amount * 37)/100;
 						tank.drain(1000, true);
 					}
 				}
@@ -171,7 +171,7 @@ public class TileEntityVacuumDistillationTower extends TileEntity implements ITa
 				if(worldObj.getBlockTileEntity(xCoord, yCoord+4, zCoord) != null){
 					TileEntityDistillationTank block4 = (TileEntityDistillationTank)worldObj.getBlockTileEntity(xCoord, yCoord+4, zCoord);
 					if(block4.tank != null) {
-						block4.tank.fill(LiquidDictionary.getLiquid("Asphalt", asphaltP), true);
+						block4.tank.fill(LiquidDictionary.getLiquid("Hasphalt", asphaltP), true);
 					}
 				}
 				
