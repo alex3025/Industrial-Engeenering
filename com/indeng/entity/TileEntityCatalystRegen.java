@@ -7,17 +7,24 @@ import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
+import net.minecraftforge.liquids.LiquidDictionary;
+import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityCatalystRegen extends TileEntity implements IInventory, IEnergySink{
+public class TileEntityCatalystRegen extends TileEntity implements IInventory, IEnergySink, ITankContainer{
 
-	
+	public LiquidTank coTank = new LiquidTank(16000);
 	public ItemStack[] inv = new ItemStack[1];
 	public int maxEnergy = 250;
 	public int energy = 0;
@@ -76,7 +83,11 @@ public class TileEntityCatalystRegen extends TileEntity implements IInventory, I
 		
 		if(!worldObj.isRemote) {
 			
-			
+			if(this.coTank.getLiquid() != null) {
+				if(this.coTank.getLiquid().amount >= this.coTank.getCapacity()) {
+					this.worldObj.createExplosion((Entity)null, this.xCoord, this.yCoord, this.zCoord, 10f, true);
+				}
+			}
 			
 			ItemStack stack = inv[0];
 			
@@ -115,6 +126,7 @@ public class TileEntityCatalystRegen extends TileEntity implements IInventory, I
 				tickforpower = 3;
 				if(stack.getItemDamage() > 0) {
 					this.energy = 0;
+					this.coTank.fill(LiquidDictionary.getLiquid("Carbon Monoxide", 25), true);
 					stack.setItemDamage(stack.getItemDamage()-5);
 					this.setInventorySlotContents(0, stack);
 				}
@@ -242,6 +254,40 @@ public class TileEntityCatalystRegen extends TileEntity implements IInventory, I
 	@Override
 	public int getMaxSafeInput() {
 		return 128;
+	}
+
+	@Override
+	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+		return drain(0, maxDrain, doDrain);
+	}
+
+	@Override
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain) {
+		if (tankIndex == 0)
+			return coTank.drain(maxDrain, doDrain);
+		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks(ForgeDirection direction) {
+		return new ILiquidTank[] {coTank};
+	}
+
+	@Override
+	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type) {
+		return coTank;
 	}
 
 }
