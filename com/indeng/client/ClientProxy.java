@@ -8,15 +8,23 @@ import com.indeng.common.SoundHandler;
 import com.indeng.entity.OsmoGeneratorEnergy;
 import com.indeng.entity.TileEntityBunkerCHeater;
 import com.indeng.entity.TileEntityCatalystRegen;
+import com.indeng.entity.TileEntityCracker;
 import com.indeng.entity.TileEntityDistillationTank;
+import com.indeng.entity.TileEntityHydroCracker;
 import com.indeng.entity.TileEntityMiscelator;
 import com.indeng.entity.TileEntityPolymerizationUnit;
+import com.indeng.entity.TileEntityReformer;
 import com.indeng.entity.TileEntityTest;
 import com.indeng.guis.GuiCatalystRegen;
+import com.indeng.guis.GuiCracker;
+import com.indeng.guis.GuiReformer;
 import com.indeng.models.RenderTableBunkerCHeater;
 import com.indeng.models.RenderTableCatalystRegen;
+import com.indeng.models.RenderTableCatalyticCracker;
+import com.indeng.models.RenderTableCatalyticReformer;
 import com.indeng.models.RenderTableDistillationTank;
 import com.indeng.models.RenderTableGasMixingUnit;
+import com.indeng.models.RenderTableHydroCracker;
 import com.indeng.models.RenderTablePolymerizationUnit;
 
 import cpw.mods.fml.client.TextureFXManager;
@@ -138,6 +146,12 @@ public class ClientProxy extends CommonProxy{
 		if (te!=null && te instanceof TileEntityCatalystRegen) {
 			TileEntityCatalystRegen temg = (TileEntityCatalystRegen) te;
 			return new GuiCatalystRegen(player.inventory, temg);
+		} else if (te!=null && te instanceof TileEntityCracker) {
+			TileEntityCracker temg = (TileEntityCracker) te;
+			return new GuiCracker(player.inventory, temg);
+		} else if (te!=null && te instanceof TileEntityReformer) {
+			TileEntityReformer temg = (TileEntityReformer) te;
+			return new GuiReformer(player.inventory, temg);
 		} else {
 			return null;
 		}
@@ -151,6 +165,9 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBunkerCHeater.class, new RenderTableBunkerCHeater());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiscelator.class, new RenderTableGasMixingUnit());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCatalystRegen.class, new RenderTableCatalystRegen());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCracker.class, new RenderTableCatalyticCracker());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityReformer.class, new RenderTableCatalyticReformer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHydroCracker.class, new RenderTableHydroCracker());
 	}
 	
 }

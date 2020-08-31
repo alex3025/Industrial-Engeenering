@@ -18,11 +18,13 @@ public class SoundHandler {
 	@ForgeSubscribe
     public void onSound(SoundLoadEvent event)
     {
-		System.out.println("[RGB] Loading Sound for RGBMod");
         try
         {
             event.manager.addSound("machines/bruciatore.ogg", new File("resources/mod/sound/bruciatore.ogg"));
             event.manager.addSound("machines/catalyst.ogg", new File("resources/mod/sound/catalystregen.ogg"));
+            event.manager.addSound("machines/cracker.ogg", new File("resources/mod/sound/cracker.ogg"));
+            event.manager.addSound("machines/reformer.ogg", new File("resources/mod/sound/reformer.ogg"));
+            event.manager.addSound("machines/hydrocracker.ogg", new File("resources/mod/sound/hydrocracker.ogg"));
         }
         catch (Exception e)
         {

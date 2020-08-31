@@ -1,6 +1,8 @@
 package com.indeng.block;
 
-import com.indeng.entity.TileEntityBunkerCHeater;
+import com.indeng.core.Core;
+import com.indeng.entity.TileEntityCracker;
+import com.indeng.entity.TileEntityHydroCracker;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -10,20 +12,42 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class BlockBunkerCHeater extends BlockContainer {
-
+public class BlockHydroCracker extends BlockContainer {
+	
+	
 	int gMeta = 0;
 	ForgeDirection dir;
 	
-	protected BlockBunkerCHeater(int par1, int par2, Material par3Material) {
+	
+	protected BlockHydroCracker(int par1, int par2, Material par3Material) {
 		super(par1, par2, par3Material);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-		// TODO Auto-generated method stub
-		return new TileEntityBunkerCHeater(dir);
+		return new TileEntityHydroCracker(dir);
+	}
+	
+	public boolean onBlockActivated(World world, int x, int y, int z,
+			EntityPlayer player, int i, float f, float g, float t) {
+		// Just making an instance of the TileEntity that the player clicked on
+		TileEntity tile_entity = world.getBlockTileEntity(x, y, z);
+
+		if (tile_entity == null || player.isSneaking()) {
+			return false;
+		}
+
+		if (world.isRemote) {
+			return true;
+		}
+
+		if (tile_entity instanceof TileEntityCracker) {
+
+			TileEntityCracker cast_tile_entity = (TileEntityCracker) tile_entity;
+			player.openGui(Core.instance, 1, world, x, y, z);
+
+		}
+		return true;
 	}
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity) {
@@ -65,5 +89,5 @@ public class BlockBunkerCHeater extends BlockContainer {
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
-
+	
 }

@@ -8,8 +8,12 @@ import org.lwjgl.input.Keyboard;
 import com.indeng.api.DistillationTowerFuel;
 import com.indeng.api.DistillationTowerFuelManager;
 import com.indeng.containers.ContainerCatalystRegen;
+import com.indeng.containers.ContainerCracking;
+import com.indeng.containers.ContainerReformer;
 import com.indeng.api.DistillationTowerFuel.FuelType;
 import com.indeng.entity.TileEntityCatalystRegen;
+import com.indeng.entity.TileEntityCracker;
+import com.indeng.entity.TileEntityReformer;
 import com.indeng.guis.GuiCatalystRegen;
 import com.indeng.item.ItemCellCO;
 import com.indeng.item.Items;
@@ -48,6 +52,12 @@ public class CommonProxy implements IGuiHandler{
 		if (te != null && te instanceof TileEntityCatalystRegen) {
 			TileEntityCatalystRegen temg = (TileEntityCatalystRegen) te;
 			return new ContainerCatalystRegen(player.inventory, temg);
+		} else if (te != null && te instanceof TileEntityCracker) {
+			TileEntityCracker temg = (TileEntityCracker) te;
+			return new ContainerCracking(player.inventory, temg);
+		} else if (te != null && te instanceof TileEntityReformer) {
+			TileEntityReformer temg = (TileEntityReformer) te;
+			return new ContainerReformer(player.inventory, temg);
 		} else {
 			return null;
 		}

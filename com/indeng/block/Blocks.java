@@ -15,7 +15,7 @@ import com.indeng.core.ModCreativeTab;
 public class Blocks {
 	public static List<Block> blocks = new ArrayList<Block>();
 
-    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationDiesel, blockDistillationGPL, blockPolymerization, blockBunkerCHeater, blockMiscelator, blockCatalystRegen, blockVacuumDistillation, blockVacuumDistillationDiesel, blockVacuumDistillationGPL;
+    public static Block blockOsmo, blockOsmoGen, blockTest, blockDistillationIdle, blockDistillationDiesel, blockDistillationGPL, blockPolymerization, blockBunkerCHeater, blockMiscelator, blockCatalystRegen, blockVacuumDistillation, blockVacuumDistillationDiesel, blockVacuumDistillationGPL, blockCracker, blockReformer, blockHydroCracker;
     public static BlockDistillationTank blockDistillationTank;
     
     public static void initBlocks(){
@@ -33,6 +33,9 @@ public class Blocks {
         blocks.add(blockBunkerCHeater = new BlockBunkerCHeater(3311, 0, Material.iron).setBlockName("blockBunkerCHeater"));
         blocks.add(blockMiscelator = new BlockMiscelator(3312, 0, Material.iron).setBlockName("blockMiscelator"));
         blocks.add(blockCatalystRegen = new BlockCatalystRegen(3313, 0, Material.iron).setBlockName("blockCatalystRegen"));
+        blocks.add(blockCracker = new BlockCracker(3317, 0, Material.iron).setBlockName("blockCracker"));
+        blocks.add(blockReformer = new BlockReformer(3318, 0, Material.iron).setBlockName("blockReformer"));
+        blocks.add(blockHydroCracker = new BlockHydroCracker(3319, 0, Material.iron).setBlockName("blockHydroCracker"));
         LanguageRegistry.addName(blockOsmo, "Salt Extractor");
         LanguageRegistry.addName(blockTest, "Test Block");
         LanguageRegistry.addName(blockOsmoGen, "Osmosis Generator");
@@ -40,13 +43,16 @@ public class Blocks {
         LanguageRegistry.addName(blockVacuumDistillation, "Vacuum Distillation Tower");
         LanguageRegistry.addName(blockPolymerization, "Polymerization Unit");
         LanguageRegistry.addName(blockBunkerCHeater, "Bunker C Heater");
-        LanguageRegistry.addName(blockMiscelator, "Miscelator");
+        LanguageRegistry.addName(blockMiscelator, "Gas Mixing Unit");
         LanguageRegistry.addName(blockCatalystRegen, "Catalyst Regeneration Unit");
+        LanguageRegistry.addName(blockCracker, "Catalyst Cracking Unit");
+        LanguageRegistry.addName(blockReformer, "Catalyst Reforming Unit");
+        LanguageRegistry.addName(blockHydroCracker, "Hydrocracking Unit");
     }
     
     public static void registerBlocks(){
         for (int i=0; i < blocks.size(); i++){
-        	if(blocks.get(i).blockID != 3304 && blocks.get(i).blockID != 3305) {
+        	if(blocks.get(i).blockID != 3304 && blocks.get(i).blockID != 3305 && blocks.get(i).blockID != 3315 && blocks.get(i).blockID != 3316) {
         		blocks.get(i).setCreativeTab(ModCreativeTab.IndEngGeneral).setHardness(2.0F).setStepSound(Block.blockSteel.stepSound);
         	}
             GameRegistry.registerBlock(blocks.get(i), blocks.get(i).getBlockName());
