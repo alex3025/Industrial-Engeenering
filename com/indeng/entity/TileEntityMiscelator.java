@@ -9,14 +9,16 @@ import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityBunkerCHeater extends TileEntity implements ITankContainer {
+public class TileEntityMiscelator extends TileEntity implements ITankContainer {
 	
-	public LiquidTank bunkerTank = new LiquidTank(16000);
-	public LiquidTank heatedBunkerTank = new LiquidTank(16000);
-	public LiquidTank steamTank = new LiquidTank(16000);
+	public LiquidTank hydroTank = new LiquidTank(16000);
+	public LiquidTank coTank = new LiquidTank(16000);
+	public LiquidTank townTank = new LiquidTank(16000);
 	ForgeDirection currentDirection = ForgeDirection.EAST;
 	ForgeDirection secondDirection = ForgeDirection.WEST;
-	ForgeDirection heatedDirection = ForgeDirection.WEST;
+	ForgeDirection townDirection = ForgeDirection.WEST;
+	
+	
 	
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
@@ -24,19 +26,19 @@ public class TileEntityBunkerCHeater extends TileEntity implements ITankContaine
 		if(tag.getShort("Dir") == (short)0) {
         	currentDirection = ForgeDirection.NORTH;
         	this.secondDirection = ForgeDirection.EAST;
-        	this.heatedDirection = ForgeDirection.SOUTH;
+        	this.townDirection = ForgeDirection.SOUTH;
         } else if(tag.getShort("Dir") == (short)1) {
         	currentDirection = ForgeDirection.EAST;
-        	this.heatedDirection = ForgeDirection.WEST;
+        	this.townDirection = ForgeDirection.WEST;
         	this.secondDirection = ForgeDirection.SOUTH;
         } else if(tag.getShort("Dir") == (short)2) {
         	currentDirection = ForgeDirection.SOUTH;
         	this.secondDirection = ForgeDirection.WEST;
-        	this.heatedDirection = ForgeDirection.NORTH;
+        	this.townDirection = ForgeDirection.NORTH;
         } else if(tag.getShort("Dir") == (short)3) {
         	currentDirection = ForgeDirection.WEST;
         	this.secondDirection = ForgeDirection.NORTH;
-        	this.heatedDirection = ForgeDirection.EAST;
+        	this.townDirection = ForgeDirection.EAST;
         }
 		
 	}
@@ -55,20 +57,8 @@ public class TileEntityBunkerCHeater extends TileEntity implements ITankContaine
         } 
 	}
 	
-	@Override
-	public void updateEntity() {
-		if(this.bunkerTank.getLiquid() != null && this.steamTank.getLiquid() != null) {
-			worldObj.spawnParticle("smoke", (double)(xCoord + 0.5), (double)yCoord+1, (double)(zCoord + 0.5), 0.0D, 0.4D, 0.0D);
-			if(this.steamTank.getLiquid().amount >= 32 && this.bunkerTank.getLiquid().amount > 0) {
-				//worldObj.spawnParticle("smoke", (double)(xCoord + 0.5), (double)yCoord+1, (double)(zCoord + 0.5), 0.0D, 0.4D, 0.0D);
-				this.steamTank.drain(32, true);
-				this.heatedBunkerTank.fill(LiquidDictionary.getLiquid("Heated Bunker C", this.bunkerTank.getLiquid().amount), true);
-				this.bunkerTank.drain(this.bunkerTank.getLiquid().amount, true);
-			}
-		}
-	}
 	
-	public TileEntityBunkerCHeater(ForgeDirection dir) {
+	public TileEntityMiscelator(ForgeDirection dir) {
 		this.currentDirection = dir;
 		
 		
@@ -89,26 +79,27 @@ public class TileEntityBunkerCHeater extends TileEntity implements ITankContaine
 		}
 		
 		if(dir == ForgeDirection.NORTH) {
-			this.heatedDirection = ForgeDirection.SOUTH;
+			this.townDirection = ForgeDirection.SOUTH;
 		}
 		
 		if(dir == ForgeDirection.WEST) {
-			this.heatedDirection = ForgeDirection.EAST;
+			this.townDirection = ForgeDirection.EAST;
 		}
 		
 		if(dir == ForgeDirection.EAST) {
-			this.heatedDirection = ForgeDirection.WEST;
+			this.townDirection = ForgeDirection.WEST;
 		}
 		
 		if(dir == ForgeDirection.SOUTH) {
-			this.heatedDirection = ForgeDirection.NORTH;
+			this.townDirection = ForgeDirection.NORTH;
 		}
 		
 	}
 	
-	public TileEntityBunkerCHeater() {
+	public TileEntityMiscelator() {
 		this.currentDirection = ForgeDirection.EAST;
 	}
+	
 	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill) {
@@ -122,80 +113,78 @@ public class TileEntityBunkerCHeater extends TileEntity implements ITankContaine
 		
 		if(resource.isLiquidEqual(LiquidDictionary.getLiquid("Bunker C", resource.amount)) && from == this.currentDirection) {
 			
-			if(this.bunkerTank.getLiquid() == null) {
-				if(resource.amount <= this.bunkerTank.getCapacity()) {
-					this.bunkerTank.fill(resource, doFill);
+			if(this.hydroTank.getLiquid() == null) {
+				if(resource.amount <= this.hydroTank.getCapacity()) {
+					this.hydroTank.fill(resource, doFill);
 					return resource.amount;
 				}
 			}
-			if((this.bunkerTank.getLiquid().amount + resource.amount) <= this.bunkerTank.getCapacity()) {
-				this.bunkerTank.fill(resource, doFill);
+			if((this.hydroTank.getLiquid().amount + resource.amount) <= this.hydroTank.getCapacity()) {
+				this.hydroTank.fill(resource, doFill);
 				return resource.amount;
 			}
 		} else if(resource.isLiquidEqual(LiquidDictionary.getLiquid("Steam", resource.amount)) && from == this.secondDirection) {
 			
-			if(this.steamTank.getLiquid() == null) {
-				if(resource.amount <= this.steamTank.getCapacity()) {
-					this.steamTank.fill(resource, doFill);
+			if(this.coTank.getLiquid() == null) {
+				if(resource.amount <= this.coTank.getCapacity()) {
+					this.coTank.fill(resource, doFill);
 					return resource.amount;
 				}
 			}
-			if((this.steamTank.getLiquid().amount + resource.amount) <= this.steamTank.getCapacity()) {
-				this.steamTank.fill(resource, doFill);
+			if((this.coTank.getLiquid().amount + resource.amount) <= this.coTank.getCapacity()) {
+				this.coTank.fill(resource, doFill);
 				return resource.amount;
 			}
 		}
 		
 		return 0;
 	}
-
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-		if (from == this.heatedDirection)
-			return this.heatedBunkerTank.drain(maxDrain, doDrain);
+		if (from == this.townDirection)
+			return this.townTank.drain(maxDrain, doDrain);
 		
 		return null;
 	}
-
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction) {
 		if (!worldObj.isRemote) {
 			System.out.println(this.currentDirection);
 			if(direction == this.currentDirection) {
-				return new ILiquidTank[] {this.bunkerTank};
-			} else if(direction == this.heatedDirection) {
-				return new ILiquidTank[] {this.heatedBunkerTank};
+				return new ILiquidTank[] {this.hydroTank};
+			} else if(direction == this.townDirection) {
+				return new ILiquidTank[] {this.townTank};
 			} else if(direction == this.secondDirection) {
-				return new ILiquidTank[] {this.steamTank};
+				return new ILiquidTank[] {this.coTank};
 			}
 		}
 		return new ILiquidTank[] {};
 	}
-	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type) {
 		if (!worldObj.isRemote) {
 			System.out.println(this.currentDirection);
 			if(direction == this.currentDirection) {
-				return this.bunkerTank;
-			} else if(direction == this.heatedDirection) {
-				return this.heatedBunkerTank;
+				return this.hydroTank;
+			} else if(direction == this.townDirection) {
+				return this.townTank;
 			} else if(direction == this.secondDirection) {
-				return this.steamTank;
+				return this.coTank;
 			}
 		}
 		return null;
 	}
+	
+	
+	
 }
