@@ -2,6 +2,8 @@ package com.indeng.entity;
 
 import com.indeng.block.Blocks;
 
+import cpw.mods.fml.relauncher.Side;
+
 import com.indeng.api.DistillationTowerFuel.FuelType;
 import com.indeng.api.DistillationTowerFuelManager;
 import com.indeng.block.BlockDistillationTower;
@@ -95,16 +97,16 @@ public class TileEntityDistillationTower extends TileEntity implements ITankCont
 	public void updateEntity() {
 		
 		if(!worldObj.isRemote) {
-			
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			if(this.audioDuration > 0 && fueled) {
 				this.audioDuration--;
 			} else if (fueled){
 				this.audioDuration = 100;
-				Minecraft.getMinecraft().sndManager.playSound("machines.bruciatore", xCoord, yCoord, zCoord, 1f, 1);
+
+				worldObj.playSoundEffect(xCoord, yCoord, zCoord, "machines.bruciatore", 1f, 1);
+				
 				//worldObj.playSound(xCoord, yCoord, zCoord, "machines.bruciatore", 0.4f, 0.5f, false);
 			}
-			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-			
 			crudeP = 0;
 			hfoP = 0;
 			fuelP = 0;

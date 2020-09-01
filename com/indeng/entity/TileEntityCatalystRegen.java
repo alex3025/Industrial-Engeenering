@@ -119,7 +119,7 @@ public class TileEntityCatalystRegen extends TileEntity implements IInventory, I
 			} else if (powered){
 				System.out.println("Accendo");
 				this.audioDuration = 200;
-				Minecraft.getMinecraft().sndManager.playSound("machines.catalyst", xCoord, yCoord, zCoord, 1f, 1);
+				worldObj.playSoundEffect(xCoord, yCoord, zCoord, "machines.catalyst", 1f, 1);
 			}
 			if(stack != null && this.energy >= 250) {
 				powered = true;

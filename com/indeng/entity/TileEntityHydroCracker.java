@@ -83,7 +83,7 @@ public class TileEntityHydroCracker extends TileEntity implements ITankContainer
 						this.audioDuration--;
 					} else {
 						this.audioDuration = 20;
-						Minecraft.getMinecraft().sndManager.playSound("machines.hydrocracker", xCoord, yCoord, zCoord, 1f, 1);
+						worldObj.playSoundEffect(xCoord, yCoord, zCoord, "machines.hydrocracker", 1f, 1);
 					}
 					
 					this.heatedBunkerTank.fill(LiquidDictionary.getLiquid("Fuel", 2000), true);

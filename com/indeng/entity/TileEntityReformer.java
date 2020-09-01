@@ -111,7 +111,7 @@ public class TileEntityReformer extends TileEntity implements ITankContainer, II
 						this.audioDuration--;
 					} else {
 						this.audioDuration = 20;
-						Minecraft.getMinecraft().sndManager.playSound("machines.reformer", xCoord, yCoord, zCoord, 1f, 1);
+						worldObj.playSoundEffect(xCoord, yCoord, zCoord, "machines.reformer", 1f, 1);
 					}
 					
 					if(this.bunkerTank.getLiquid().isLiquidEqual(LiquidDictionary.getLiquid("Gasoline", this.bunkerTank.getLiquid().amount))) {

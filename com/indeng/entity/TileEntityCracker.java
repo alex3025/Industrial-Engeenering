@@ -111,7 +111,7 @@ public class TileEntityCracker extends TileEntity implements ITankContainer, IIn
 						this.audioDuration--;
 					} else {
 						this.audioDuration = 20;
-						Minecraft.getMinecraft().sndManager.playSound("machines.cracker", xCoord, yCoord, zCoord, 1f, 1);
+						worldObj.playSoundEffect(xCoord, yCoord, zCoord, "machines.cracker", 1f, 1);
 					}
 					
 					if(this.bunkerTank.getLiquid().isLiquidEqual(LiquidDictionary.getLiquid("Gasoline", this.bunkerTank.getLiquid().amount))) {

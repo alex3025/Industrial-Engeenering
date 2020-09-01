@@ -76,7 +76,7 @@ public class TileEntitySteamReformer extends TileEntity  implements ITankContain
 						this.audioDuration--;
 					} else {
 						this.audioDuration = 80;
-						Minecraft.getMinecraft().sndManager.playSound("machines.steamreformer", xCoord, yCoord, zCoord, 1f, 1);
+						worldObj.playSoundEffect(xCoord, yCoord, zCoord, "machines.steamreformer", 1f, 1);
 					}
 					
 					this.hydroTank.fill(LiquidDictionary.getLiquid("gasHydrogen", 4000), true);
