@@ -31,6 +31,7 @@ ic2/
 net/
 paulscode/
 railcraft/
+appeng/
 
 # Ignore other Files
 fml_at.cfg
